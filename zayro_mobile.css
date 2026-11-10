@@ -1,0 +1,69 @@
+/* ZAYRO MOBILE v1.0 */
+html,body{overscroll-behavior:none;-webkit-tap-highlight-color:transparent}
+body{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
+#game{touch-action:none;transform-origin:50% 50%;will-change:transform}
+.touch-controls button,.touch-controls .steering-wheel{touch-action:none;-webkit-user-select:none;user-select:none}
+
+#zmBtn{position:fixed;left:max(8px,env(safe-area-inset-left));top:46%;z-index:31;width:40px;height:40px;border:1px solid #f5d47d66;background:#0b1114cc;backdrop-filter:blur(8px);color:#f5d47d;font-size:18px;line-height:1;cursor:pointer;clip-path:polygon(0 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%)}
+#zmBtn:focus-visible{outline:3px solid #fff;outline-offset:2px}
+#zmPanel{position:fixed;left:max(8px,env(safe-area-inset-left));top:max(8px,calc(46% - 120px));z-index:32;width:min(320px,calc(100vw - 20px));max-height:calc(100vh - 16px);overflow-y:auto;padding:12px;background:#0c1417f2;border:1px solid #f5d47d55;box-shadow:0 16px 50px #000b;backdrop-filter:blur(10px);font-family:'Space Mono',monospace;color:#e9ece6}
+#zmPanel[hidden]{display:none}
+.zm-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-size:11px;letter-spacing:2px;color:#f5d47d}
+.zm-head button{background:none;border:0;color:#c8d1cd;font-size:16px;cursor:pointer;padding:4px 8px}
+.zm-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 0;border-top:1px solid #ffffff14}
+.zm-row[hidden]{display:none}
+.zm-row span{font-size:10px;letter-spacing:.5px;line-height:1.3}
+.zm-row small{display:block;margin-top:2px;font-size:8px;color:#8f9a96;letter-spacing:.3px}
+.zm-sw,.zm-act,.zm-tiltrow button{min-width:54px;padding:8px 10px;border:1px solid #ffffff33;background:#141c1f;color:#9ca5a6;font:700 10px 'Space Mono',monospace;letter-spacing:1px;cursor:pointer}
+.zm-sw.on{border-color:#f5d47d;background:linear-gradient(100deg,#ffe6a2,#d6a83f);color:#17150f}
+.zm-act{border-color:#f5d47d88;color:#f5d47d}
+.zm-act[hidden]{display:none}
+.zm-tiltrow{justify-content:flex-start;gap:8px;border-top:0;padding-top:0}
+.zm-tiltrow button{color:#c8d1cd}
+#zmPanel button:focus-visible{outline:3px solid #fff;outline-offset:2px}
+
+#zmToast{position:fixed;left:50%;top:max(14px,env(safe-area-inset-top));transform:translate(-50%,-12px);z-index:70;max-width:86vw;padding:9px 16px;background:#0b1114ee;border:1px solid #f5d47d88;color:#f2f4ee;font:10px 'Space Mono',monospace;letter-spacing:1px;text-align:center;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s}
+#zmToast.show{opacity:1;transform:translate(-50%,0)}
+
+#zmRotate{display:none;position:fixed;left:50%;top:max(10px,env(safe-area-inset-top));transform:translateX(-50%);z-index:29;padding:7px 14px;background:#0b1114e6;border:1px solid #f5d47d88;color:#f5d47d;font:10px 'Space Mono',monospace;letter-spacing:1.5px;pointer-events:none;white-space:nowrap}
+@media (orientation:portrait) and (pointer:coarse){body.zm-run #zmRotate{display:block}}
+@media (max-width:700px){#zmBtn{top:38%}}
+@media (prefers-reduced-motion:reduce){#game{will-change:auto}#zmToast{transition:none}}
+
+/* touch controls only while actually driving (not over the intro / garage / pause / finish screens) */
+.touch-controls{visibility:hidden}
+body.zm-drive .touch-controls{visibility:visible}
+
+/* realistic racing wheel */
+.touch-controls .steering-wheel{width:clamp(104px,30vh,142px)!important;height:clamp(104px,30vh,142px)!important;border:0!important;border-radius:0!important;background:none!important;box-shadow:none!important;padding:0;display:block!important;filter:drop-shadow(0 7px 10px #000b);will-change:transform;cursor:grab;touch-action:none;pointer-events:auto}
+.touch-controls .steering-wheel.grab{cursor:grabbing}
+.touch-controls .steering-wheel svg{display:block;width:100%;height:100%;pointer-events:none;overflow:visible}
+
+/* compact phone HUD: nothing may sit under the wheel or the pedals */
+@media (pointer:coarse){
+  body.zm-compact .minimap-card,body.zm-compact #skillCard,body.zm-compact .bottom-bar{display:none!important}
+  body.zm-compact .speed-card{left:calc(128px + env(safe-area-inset-left))!important;right:auto!important;top:auto!important;bottom:calc(8px + env(safe-area-inset-bottom))!important;transform:scale(.72)!important;transform-origin:bottom left!important}
+  body.zm-compact .nitro-card{left:calc(128px + env(safe-area-inset-left))!important;right:auto!important;top:auto!important;bottom:calc(92px + env(safe-area-inset-bottom))!important;transform:scale(.58)!important;transform-origin:bottom left!important;width:230px!important}
+  body.zm-compact.zm-drive #zpXp{display:none!important}
+  body.zm-compact.zm-drive #zmBtn{top:54px;left:6px;width:34px;height:34px;font-size:15px}
+  body.zm-compact .hud-top{transform:scale(.8);transform-origin:top left}
+  body.zm-compact .touch-controls .pedal-pad{right:max(12px,env(safe-area-inset-right))!important;bottom:calc(14px + env(safe-area-inset-bottom))!important;top:auto!important}
+  body.zm-compact .touch-controls .steer-pad{left:max(12px,env(safe-area-inset-left))!important;bottom:calc(14px + env(safe-area-inset-bottom))!important;top:auto!important}
+}
+
+/* touch driving UI (any device, incl. touch laptops): the nitro/crash/tyre panel and the keyboard hint bar are hidden,
+   nitro level lives on the NITRO button, speed sits beside the wheel */
+body.zm-touchui .nitro-card,body.zm-touchui .bottom-bar,body.zm-touchui #skillCard{display:none!important}
+body.zm-touchui .speed-card{left:calc(150px + env(safe-area-inset-left))!important;right:auto!important;top:auto!important;bottom:calc(10px + env(safe-area-inset-bottom))!important;transform:scale(.8)!important;transform-origin:bottom left!important}
+.touch-controls [data-control="boost"]{position:relative;overflow:hidden}
+.zm-nbar{position:absolute;left:8%;right:8%;bottom:7px;height:5px;background:#00000066;border-radius:3px;overflow:hidden;pointer-events:none}
+.zm-nbar b{display:block;height:100%;width:100%;background:linear-gradient(90deg,#5de4ff,#d8ff38);transition:width .15s}
+.zm-nbar.low b{background:#ff6b78}
+
+/* touch BUTTON mode must never show the wheel (my wheel rule used !important) */
+.touch-controls.touch-button-mode .steering-wheel{display:none!important}
+/* no HUD boxes at the bottom-left in touch driving: speed is a small, boxless readout */
+body.zm-touchui .speed-card{display:none!important}
+#zmSpeed{position:fixed;left:50%;bottom:calc(12px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:4;display:none;pointer-events:none;font:900 26px/1 'Barlow Condensed',Impact,sans-serif;font-style:italic;letter-spacing:2px;color:#f2f4ee;text-shadow:0 2px 10px #000,0 0 3px #000}
+#zmSpeed small{margin-left:5px;font:9px 'Space Mono',monospace;font-style:normal;letter-spacing:1px;color:#d8ff38}
+body.zm-touchui.zm-speed #zmSpeed{display:block}

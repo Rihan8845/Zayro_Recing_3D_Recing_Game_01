@@ -1,0 +1,6 @@
+/* ZAYRO LEGEND v13.0 — Misty Pines road + Stratos Zero car */
+#zlFx{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
+.road-pines{--road-art:linear-gradient(165deg,#b9cfc8 0 34%,#3d5a43 35% 58%,#1d2a1f 59% 72%,#2a2a2b 73%)}
+.road-select{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+.car-select{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+@media(max-width:700px){.road-select,.car-select{grid-template-columns:repeat(2,minmax(0,1fr))!important}}

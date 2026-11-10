@@ -1,0 +1,4 @@
+/* ZAYRO GRAPHICS v14.0 — lens drops / snow / lightning overlay */
+#zgFx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:2}
+#zgFlash{position:fixed;inset:0;pointer-events:none;z-index:3;background:#dfe9ff;opacity:0;mix-blend-mode:screen}
+@media(prefers-reduced-motion:reduce){#zgFlash{display:none}}

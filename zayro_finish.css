@@ -1,0 +1,24 @@
+/* ZAYRO FINISH v1.0 — HUD countdown + chequered-flag celebration */
+#zfCountdown{position:fixed;left:50%;top:34%;transform:translate(-50%,-8px);z-index:4;display:flex;align-items:center;gap:10px;padding:7px 14px;background:#0b1114dd;border:1px solid #f5d47d88;box-shadow:0 8px 30px #0008;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;font:700 14px 'Barlow Condensed',Impact,sans-serif;letter-spacing:3px;color:#f2f4ee}
+#zfCountdown.show{opacity:1;transform:translate(-50%,0)}
+#zfCountdown i{width:22px;height:11px;background:repeating-conic-gradient(#f5d47d 0 25%,#0b1114 0 50%) 0 0/11px 11px}
+#zfCountdown b{min-width:72px;text-align:center;font-size:24px;font-style:italic;color:#f5d47d;letter-spacing:2px}
+#zfCountdown.close b{color:#ff6b78;animation:zfBlink .5s steps(2,end) infinite}
+@keyframes zfBlink{50%{opacity:.35}}
+
+#zfCelebrate{position:fixed;inset:0;z-index:60;pointer-events:none;overflow:hidden}
+#zfCelebrate .zf-flash{position:absolute;inset:0;background:#fff;opacity:0;animation:zfFlash .7s ease-out}
+@keyframes zfFlash{0%{opacity:.85}100%{opacity:0}}
+#zfCelebrate .zf-band{position:absolute;left:0;right:0;height:34px;background:repeating-conic-gradient(#f4f4ee 0 25%,#0a0d0f 0 50%) 0 0/34px 34px;box-shadow:0 0 30px #000a;animation:zfBand 3.4s cubic-bezier(.2,.8,.2,1) forwards}
+#zfCelebrate .zf-band.top{top:0;transform:translateY(-100%)}
+#zfCelebrate .zf-band.bot{bottom:0;transform:translateY(100%)}
+@keyframes zfBand{0%{transform:translateY(var(--from,-100%))}12%,78%{transform:translateY(0)}100%{transform:translateY(var(--from,-100%))}}
+#zfCelebrate .zf-band.bot{--from:100%}
+#zfCelebrate .zf-title{position:absolute;left:50%;top:30%;transform:translate(-50%,0);text-align:center;text-shadow:0 6px 36px #000;animation:zfTitle 3.4s ease-out forwards;opacity:0}
+#zfCelebrate .zf-title small{display:block;font:11px 'Space Mono',monospace;letter-spacing:6px;color:#f5d47d}
+#zfCelebrate .zf-title b{display:block;font:900 italic clamp(60px,14vw,150px)/1 'Barlow Condensed',Impact,sans-serif;letter-spacing:.04em;background:linear-gradient(180deg,#fff6cf,#e2b04a 55%,#fff0b0);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 4px 20px #000)}
+@keyframes zfTitle{0%{opacity:0;transform:translate(-50%,24px) scale(1.25)}14%{opacity:1;transform:translate(-50%,0) scale(1)}72%{opacity:1}100%{opacity:0;transform:translate(-50%,-16px)}}
+#zfCelebrate s{position:absolute;top:-24px;opacity:0;text-decoration:none;animation-name:zfFall;animation-timing-function:linear;animation-fill-mode:forwards}
+@keyframes zfFall{0%{opacity:1;transform:translateY(0) rotate(0)}100%{opacity:.9;transform:translateY(112vh) rotate(var(--r))}}
+@media(prefers-reduced-motion:reduce){#zfCelebrate s,#zfCelebrate .zf-flash{display:none}#zfCountdown.close b{animation:none}}
+@media(max-width:700px){#zfCountdown{top:30%;padding:5px 10px}#zfCountdown b{font-size:19px}}

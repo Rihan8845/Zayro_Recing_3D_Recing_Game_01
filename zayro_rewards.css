@@ -1,0 +1,79 @@
+/* ZAYRO RACING — Winner Rewards / Victory screen / Winner's Cabinet */
+.zrv{position:fixed;inset:0;z-index:3000;display:flex;align-items:center;justify-content:center;padding:max(10px,env(safe-area-inset-top)) 12px max(10px,env(safe-area-inset-bottom));background:radial-gradient(ellipse at 50% 35%,#1b2a30f2,#070b0df7 70%);backdrop-filter:blur(6px);overflow-y:auto;animation:zrvIn .35s ease-out}
+.zrv-hidden{display:none!important}
+@keyframes zrvIn{from{opacity:0}to{opacity:1}}
+#zrvConfetti{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.zrv-rays{position:absolute;left:50%;top:30%;width:130vmax;height:130vmax;margin:-65vmax 0 0 -65vmax;pointer-events:none;opacity:.22;background:repeating-conic-gradient(from 0deg,var(--zrv-a,#f2c14e) 0 4deg,transparent 4deg 16deg);-webkit-mask:radial-gradient(circle,#000 0,transparent 60%);mask:radial-gradient(circle,#000 0,transparent 60%);animation:zrvSpin 40s linear infinite}
+@keyframes zrvSpin{to{transform:rotate(360deg)}}
+.zrv-card{--zrv-a:#f2c14e;--zrv-b:#fff0b3;position:relative;width:min(640px,100%);margin:auto;padding:clamp(16px,3.2vh,30px) clamp(14px,4vw,34px);text-align:center;color:#f4efe0;border:1px solid color-mix(in srgb,var(--zrv-a) 55%,transparent);background:linear-gradient(165deg,#10191cf0,#141716f5 55%,#201a0ef0);box-shadow:0 0 0 1px #0008,0 24px 80px #000c,0 0 60px color-mix(in srgb,var(--zrv-a) 22%,transparent),inset 0 1px 0 #ffffff22;animation:zrvPop .55s cubic-bezier(.2,1.3,.4,1)}
+.zrv-card::before{content:"";position:absolute;left:12px;right:12px;top:8px;height:7px;background:repeating-conic-gradient(var(--zrv-a) 0 25%,transparent 0 50%) 0 0/7px 7px;opacity:.7}
+.zrv-card::after{content:"";position:absolute;left:12px;right:12px;bottom:8px;height:7px;background:repeating-conic-gradient(var(--zrv-a) 0 25%,transparent 0 50%) 0 0/7px 7px;opacity:.7}
+@keyframes zrvPop{from{transform:scale(.8) translateY(20px);opacity:0}to{transform:none;opacity:1}}
+.zrv-card.tier-silver{--zrv-a:#c3ccd8;--zrv-b:#ffffff}
+.zrv-card.tier-bronze{--zrv-a:#c98443;--zrv-b:#ffd9b0}
+.zrv-card.tier-steel{--zrv-a:#6f9ac0;--zrv-b:#e2f0ff}
+.zrv-kicker{margin-top:12px;font:9px/1.5 'Space Mono',monospace;letter-spacing:2px;color:#b8c0b8}
+.zrv-place{display:flex;align-items:flex-start;justify-content:center;gap:2px;margin:4px 0 0;line-height:.9}
+.zrv-place b{font:900 clamp(78px,17vh,128px)/.9 Georgia,'Times New Roman',serif;background:linear-gradient(180deg,var(--zrv-b),var(--zrv-a) 60%,#6a4a10);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 4px 18px color-mix(in srgb,var(--zrv-a) 55%,transparent));animation:zrvNum .8s cubic-bezier(.2,1.5,.35,1) .15s both}
+.zrv-place sup{font:900 clamp(22px,5vh,38px)/1 Georgia,serif;color:var(--zrv-a);margin-top:.2em;animation:zrvNum .8s cubic-bezier(.2,1.5,.35,1) .35s both}
+.zrv-place em{align-self:flex-end;margin:0 0 .35em .5em;font:700 clamp(13px,2.6vh,18px)/1 'Space Mono',monospace;letter-spacing:6px;font-style:normal;color:#e9e4d2}
+@keyframes zrvNum{from{transform:scale(2.4) rotate(-6deg);opacity:0}to{transform:none;opacity:1}}
+.zrv-cup{position:relative;height:0}
+.zrv-title{margin:2px 0 8px;font:900 clamp(26px,5.4vh,42px)/1 'Archivo Black','Arial Black',sans-serif;letter-spacing:3px;color:#fff;text-shadow:0 0 24px color-mix(in srgb,var(--zrv-a) 60%,transparent);animation:zrvNum .6s ease-out .5s both}
+.zrv-coins{display:inline-flex;align-items:baseline;gap:8px;padding:8px 18px;margin:2px 0 6px;border:1px solid color-mix(in srgb,var(--zrv-a) 50%,transparent);background:linear-gradient(100deg,#00000066,color-mix(in srgb,var(--zrv-a) 14%,transparent));box-shadow:0 0 24px color-mix(in srgb,var(--zrv-a) 16%,transparent)}
+.zrv-coins small{font:9px 'Space Mono',monospace;letter-spacing:2px;color:#cfd3c8}
+.zrv-coins b{font:900 clamp(26px,5vh,38px)/1 'Archivo Black','Arial Black',sans-serif;color:var(--zrv-b);font-variant-numeric:tabular-nums}
+.zrv-coins span{font:700 12px 'Space Mono',monospace;color:var(--zrv-a)}
+.zrv-perf{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:2px 0 6px}
+.zrv-perf span{padding:3px 8px;border:1px solid #ffffff2e;font:8px 'Space Mono',monospace;letter-spacing:1px;color:#c9d6c2;background:#ffffff0a}
+.zrv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:9px;margin:10px 0 4px;min-height:8px}
+.zrv-item{position:relative;display:flex;flex-direction:column;align-items:center;gap:3px;padding:12px 8px 10px;border:1px solid #ffffff26;background:linear-gradient(160deg,#ffffff10,#00000030);animation:zrvCard .7s cubic-bezier(.2,1.3,.4,1) both;transform-origin:50% 100%}
+.zrv-item.instant{animation:none}
+@keyframes zrvCard{0%{transform:rotateY(90deg) scale(.7);opacity:0}60%{transform:rotateY(-8deg) scale(1.06);opacity:1}100%{transform:none}}
+.zrv-item.is-unlock{border-color:var(--zrv-a);box-shadow:0 0 22px color-mix(in srgb,var(--zrv-a) 35%,transparent),inset 0 0 20px color-mix(in srgb,var(--zrv-a) 10%,transparent)}
+.zrv-item.is-unlock::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 35%,#ffffff55 50%,transparent 65%);transform:translateX(-120%);animation:zrvShine 1.6s ease-out .5s 1;pointer-events:none}
+.zrv-item.instant.is-unlock::after{animation:none}
+@keyframes zrvShine{to{transform:translateX(120%)}}
+.zrv-new{position:absolute;top:-8px;right:-6px;padding:2px 7px;background:linear-gradient(100deg,#ff5a3d,#ff9a3d);color:#fff;font:900 9px 'Space Mono',monospace;letter-spacing:1px;box-shadow:0 2px 10px #ff6a3d66;animation:zrvPulse 1.2s ease-in-out infinite}
+@keyframes zrvPulse{50%{transform:scale(1.12)}}
+.zrv-ico{font-size:30px;line-height:1;filter:drop-shadow(0 0 10px #ffffff33)}
+.zrv-sw{display:block;width:34px;height:34px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 14px #ffffff55,inset 0 -8px 12px #0006}
+.zrv-item small{font:8px 'Space Mono',monospace;letter-spacing:1.5px;color:var(--zrv-a)}
+.zrv-item b{font:900 14px/1.15 'Archivo Black','Arial Black',sans-serif;color:#fff}
+.zrv-item span:not(.zrv-new){font:9px/1.4 'Space Mono',monospace;color:#b8c0b8}
+.zrv-item.trophy.t-gold .zrv-ico{filter:drop-shadow(0 0 12px #f2c14ecc)}
+.zrv-item.trophy.t-silver .zrv-ico{filter:grayscale(1) brightness(1.3) drop-shadow(0 0 10px #fff9)}
+.zrv-item.trophy.t-bronze .zrv-ico{filter:sepia(1) saturate(2.2) hue-rotate(-12deg) drop-shadow(0 0 10px #c98443aa)}
+.zrv-note{margin:8px 0 0;padding:6px 10px;border:1px dashed #ffffff3a;font:9px/1.5 'Space Mono',monospace;color:#ffd9a0}
+.zrv-xp{margin:8px 0 2px;font:700 10px 'Space Mono',monospace;letter-spacing:3px;color:#7fe3ff}
+.zrv-actions{display:flex;gap:10px;justify-content:center;margin-top:12px;flex-wrap:wrap}
+.zrv-actions button{min-height:46px;padding:12px 22px;border:1px solid var(--zrv-a);background:transparent;color:#f4efe0;font:900 12px 'Space Mono',monospace;letter-spacing:1px;cursor:pointer;touch-action:manipulation}
+.zrv-actions .zrv-go{background:linear-gradient(100deg,var(--zrv-b),var(--zrv-a));color:#17150f;box-shadow:0 6px 24px color-mix(in srgb,var(--zrv-a) 40%,transparent);animation:zrvPulse 1.6s ease-in-out infinite}
+.zrv-actions button:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.zrv-actions button[hidden]{display:none}
+@media (max-height:520px){.zrv-place b{font-size:64px}.zrv-title{font-size:22px}.zrv-grid{grid-template-columns:repeat(auto-fit,minmax(120px,1fr))}.zrv-item{padding:8px 6px}.zrv-ico{font-size:22px}}
+@media (prefers-reduced-motion:reduce){.zrv,.zrv-card,.zrv-place b,.zrv-place sup,.zrv-title,.zrv-item,.zrv-new,.zrv-rays,.zrv-actions .zrv-go{animation:none!important}}
+
+/* Winner's Cabinet (garage) */
+.zrc{display:grid;gap:8px;margin:6px 0 4px;padding:12px;border:1px solid #d9b45b44;background:linear-gradient(160deg,#10181a,#161a1a 60%,#2a2213);font-family:'Space Mono',monospace}
+.zrc-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.zrc-stats div{padding:7px 4px;text-align:center;border:1px solid #ffffff1a;background:#00000030}
+.zrc small{display:block;font-size:8px;letter-spacing:1.5px;color:#a9b3a6}
+.zrc-stats b{font-size:18px;color:#ffe08a}
+.zrc-trophies{display:flex;gap:14px;justify-content:center;font-size:14px;color:#e9e4d2}
+.zrc-cups{display:flex;gap:8px;justify-content:center}
+.zrc-cup{display:flex;flex-direction:column;align-items:center;width:42px;padding:5px 0;border:1px solid #ffffff1a;background:#0003}
+.zrc-cup i{font-style:normal;font-size:18px;line-height:1}
+.zrc-cup.t-none i{color:#666}
+.zrc-cup.t-silver i{filter:grayscale(1) brightness(1.3)}
+.zrc-cup.t-bronze i{filter:sepia(1) saturate(2.2) hue-rotate(-12deg)}
+.zrc-cup.t-steel i{filter:grayscale(.6) hue-rotate(170deg)}
+.zrc-cup small{font-size:8px;margin-top:2px}
+.zrc-row b{display:block;margin-top:3px;font-size:10px;line-height:1.5;color:#e9e4d2;font-weight:400}
+.zrc-skins,.zrc-ach{display:flex;flex-wrap:wrap;gap:6px;margin-top:5px}
+.zrc-skin{display:flex;align-items:center;gap:5px;padding:3px 7px 3px 4px;border:1px solid #ffffff1f;font-size:9px;color:#777}
+.zrc-skin.own{color:#f4efe0;border-color:#d9b45b66}
+.zrc-skin i{width:14px;height:14px;border-radius:50%;border:1px solid #fff6}
+.zrc-skin small{display:inline;font-size:9px;letter-spacing:0;color:inherit}
+.zrc-ach span{padding:3px 7px;border:1px solid #ffffff1a;font-size:9px;color:#8a938a}
+.zrc-ach span.got{color:#ffe08a;border-color:#d9b45b66;background:#d9b45b14}

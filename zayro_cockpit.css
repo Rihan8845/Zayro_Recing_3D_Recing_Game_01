@@ -1,0 +1,146 @@
+/* ZAYRO COCKPIT v1.0 — realistic pedals/buttons + GPS-style circuit map (loaded last; base code untouched) */
+
+/* ============================================================ PEDAL PAD */
+.touch-controls .pedal-pad button{
+  --zc-led:#38ff6a;--zc-frame1:#8b9298;--zc-frame2:#3c4146;--zc-pad:#14171a;
+  position:relative;isolation:isolate;overflow:hidden;
+  border:1px solid #05070866!important;border-radius:11px!important;
+  color:#f4f6f2!important;text-shadow:0 1px 2px #000,0 0 6px #000a;
+  font:900 12px/1 'Barlow Condensed',Impact,sans-serif!important;letter-spacing:2px;font-style:italic;
+  background:
+    repeating-linear-gradient(90deg,#ffffff0a 0 1px,transparent 1px 3px),
+    linear-gradient(160deg,var(--zc-frame1),var(--zc-frame2) 55%,#25292d)!important;
+  box-shadow:
+    0 7px 0 #0b0d0f,                       /* pedal arm / depth */
+    0 11px 16px #000c,
+    inset 0 1px 0 #ffffff66,
+    inset 0 -2px 3px #0009!important;
+  transition:transform .06s,box-shadow .06s,filter .1s;
+  -webkit-tap-highlight-color:transparent;
+}
+/* rubber pad inset inside the metal frame */
+.touch-controls .pedal-pad button::before{
+  content:"";position:absolute;inset:5px;z-index:-1;border-radius:7px;
+  background:
+    repeating-linear-gradient(180deg,#000000b0 0 2px,#ffffff10 2px 3px,transparent 3px 7px),
+    linear-gradient(180deg,#23272b,var(--zc-pad));
+  box-shadow:inset 0 3px 6px #000d,inset 0 -1px 0 #ffffff1c,0 0 0 1px #000a;
+}
+/* corner bolts */
+.touch-controls .pedal-pad button::after{
+  content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(circle at 5px 5px,#d8dde1 0 1.2px,#4a5056 1.6px,transparent 2.4px),
+    radial-gradient(circle at calc(100% - 5px) 5px,#d8dde1 0 1.2px,#4a5056 1.6px,transparent 2.4px),
+    radial-gradient(circle at 5px calc(100% - 5px),#d8dde1 0 1.2px,#4a5056 1.6px,transparent 2.4px),
+    radial-gradient(circle at calc(100% - 5px) calc(100% - 5px),#d8dde1 0 1.2px,#4a5056 1.6px,transparent 2.4px);
+}
+/* pressed = pedal travels down, LED flares */
+.touch-controls .pedal-pad button.pressed{
+  transform:translateY(5px) scale(.985)!important;filter:brightness(1.12)!important;
+  box-shadow:0 2px 0 #0b0d0f,0 4px 8px #000b,inset 0 1px 0 #ffffff33,inset 0 -2px 3px #000b,0 0 18px var(--zc-led)!important;
+}
+.touch-controls .pedal-pad button.pressed::before{box-shadow:inset 0 4px 9px #000,inset 0 -1px 0 #ffffff12,0 0 0 1px #000}
+
+/* ---- GO / accelerator: tall organ pedal, green anodised, deep ribs */
+.touch-controls .pedal-pad .accelerate-button{
+  --zc-led:#4dff7a;--zc-frame1:#7fd09a;--zc-frame2:#1f6a3a;--zc-pad:#0f1512;
+  font-size:15px!important;
+  background:
+    repeating-linear-gradient(90deg,#ffffff0d 0 1px,transparent 1px 3px),
+    linear-gradient(160deg,#8fe3a8,#2c8a4d 50%,#16472b)!important;
+}
+.touch-controls .pedal-pad .accelerate-button::before{
+  inset:6px 7px;
+  background:
+    repeating-linear-gradient(180deg,#000000c0 0 3px,#ffffff14 3px 4px,transparent 4px 10px),
+    linear-gradient(180deg,#1d2421,#0d1210);
+}
+/* ---- BRAKE: wide pad, red anodised, dotted rubber */
+.touch-controls .pedal-pad .brake-button{
+  --zc-led:#ff4a3a;--zc-frame1:#e8695a;--zc-frame2:#7d1a14;--zc-pad:#16100f;
+  background:
+    repeating-linear-gradient(90deg,#ffffff0d 0 1px,transparent 1px 3px),
+    linear-gradient(160deg,#f07a6a,#b42a1f 50%,#5c120d)!important;
+}
+.touch-controls .pedal-pad .brake-button::before{
+  background:
+    radial-gradient(circle,#ffffff1c 0 1px,transparent 1.4px) 0 0/6px 6px,
+    linear-gradient(180deg,#241a19,#120d0c);
+}
+/* ---- REV: gunmetal with amber reverse lamp */
+.touch-controls .pedal-pad .reverse-button{
+  --zc-led:#ffb62e;--zc-frame1:#9aa2a8;--zc-frame2:#31373c;--zc-pad:#14181b;
+  background:
+    repeating-linear-gradient(90deg,#ffffff0a 0 1px,transparent 1px 3px),
+    linear-gradient(160deg,#aab2b8,#4a5258 50%,#262b2f)!important;
+}
+.touch-controls .pedal-pad .reverse-button::before{
+  background:
+    repeating-linear-gradient(135deg,#00000070 0 2px,transparent 2px 6px),
+    linear-gradient(180deg,#22272b,#121518);
+}
+/* ---- NITRO: chrome-ringed blue glass push button */
+.touch-controls .pedal-pad .boost-button{
+  --zc-led:#4fd8ff;--zc-frame1:#e5ecf0;--zc-frame2:#56606a;--zc-pad:#06324d;
+  background:linear-gradient(160deg,#f2f6f8,#7c8790 45%,#2e353b)!important;
+  border-radius:14px!important;
+}
+.touch-controls .pedal-pad .boost-button::before{
+  inset:4px;border-radius:11px;
+  background:
+    radial-gradient(120% 90% at 30% 12%,#9fe9ff99 0 18%,transparent 46%),
+    linear-gradient(180deg,#1a95d6,#0a5c93 60%,#073b61);
+  box-shadow:inset 0 2px 6px #fff6,inset 0 -6px 12px #001a2e,0 0 0 1px #00121e;
+}
+.touch-controls .pedal-pad .boost-button::after{background:none;inset:0}
+.touch-controls .pedal-pad .boost-button.pressed::before{
+  background:
+    radial-gradient(120% 90% at 50% 40%,#d5f6ffcc 0 22%,transparent 60%),
+    linear-gradient(180deg,#34b8f2,#118ad0 60%,#0a5c93);
+}
+/* nitro LED strip (injected by zayro_mobile.js) */
+.touch-controls .boost-button .zm-nbar{left:12%;right:12%;bottom:7px;height:5px;border-radius:3px;background:#00101c;box-shadow:inset 0 1px 2px #000,0 0 0 1px #ffffff2a}
+.touch-controls .boost-button .zm-nbar b{background:linear-gradient(90deg,#4fd8ff,#b8ff4a);box-shadow:0 0 8px #7cf0ffaa}
+
+/* ============================================================ STEER BUTTONS (touch BUTTON mode) */
+.touch-controls .steer-pad>button{
+  position:relative;isolation:isolate;overflow:hidden;
+  border:1px solid #000a!important;
+  color:#e9eef0!important;text-shadow:0 1px 2px #000;
+  background:
+    radial-gradient(circle at 50% 38%,#3a4147 0 40%,#1a1e22 41% 100%)!important;
+  box-shadow:
+    0 0 0 3px #aeb6bc,0 0 0 4px #20262b,                /* chrome ring */
+    0 6px 0 4px #0b0d0f,0 12px 16px #000c,
+    inset 0 2px 3px #ffffff30,inset 0 -3px 6px #000c!important;
+  transition:transform .06s,box-shadow .06s;
+}
+.touch-controls .steer-pad>button.pressed{
+  transform:translateY(4px) scale(.97)!important;filter:brightness(1.25)!important;
+  box-shadow:0 0 0 3px #d8dde1,0 0 0 4px #20262b,0 2px 0 4px #0b0d0f,0 4px 8px #000b,inset 0 3px 8px #000,0 0 14px #d8ff3899!important;
+}
+
+/* ============================================================ CIRCUIT MAP = GPS / dash display */
+.minimap-card{
+  position:absolute;padding:10px 12px 9px!important;
+  background:
+    repeating-linear-gradient(45deg,#ffffff06 0 2px,transparent 2px 4px),
+    linear-gradient(160deg,#20272b,#0c1013 60%,#14191c)!important;
+  border:1px solid #3d474d!important;
+  box-shadow:0 14px 34px #000a,inset 0 1px 0 #ffffff26,inset 0 0 0 1px #000!important;
+}
+.minimap-card .eyebrow{display:flex;align-items:center;gap:6px;color:#cfd8d4}
+.minimap-card .eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:#38ff6a;box-shadow:0 0 8px #38ff6a}
+.zc-screen{position:relative;margin-top:7px;width:180px;height:120px;border-radius:5px;overflow:hidden;background:#05080a;
+  box-shadow:0 0 0 2px #000,0 0 0 3px #4a555c,inset 0 0 14px #000}
+.minimap-card .zc-screen canvas{margin:0!important;width:180px;height:120px;display:block;image-rendering:auto}
+.zc-glass{position:absolute;inset:0;pointer-events:none;border-radius:5px;
+  background:
+    linear-gradient(115deg,#ffffff26 0,#ffffff0a 22%,transparent 38%),
+    repeating-linear-gradient(180deg,#00000024 0 1px,transparent 1px 3px);
+  box-shadow:inset 0 0 18px #000c,inset 0 0 0 1px #ffffff12}
+.map-legend{margin-top:7px}
+@media(max-width:700px){.zc-screen,.minimap-card .zc-screen canvas{width:170px;height:113px}}
+
+@media(prefers-reduced-motion:reduce){.touch-controls .pedal-pad button,.touch-controls .steer-pad>button{transition:none}}

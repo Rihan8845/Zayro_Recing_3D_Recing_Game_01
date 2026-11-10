@@ -1,0 +1,55 @@
+/* ZAYRO RACING — PRO PACK (v7): tuning shop, daily challenges, realism FX, pro HUD */
+.zpro-daily{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:8px;margin:8px 0 14px}
+.zd-c{padding:9px 11px;border:1px solid #ffffff2e;background:linear-gradient(150deg,#ffffff0d,#00000030);display:flex;flex-direction:column;gap:3px}
+.zd-c b{font:700 13px/1.25 'Barlow Condensed',Impact,sans-serif;letter-spacing:.6px;color:#f1f4ee}
+.zd-c small{font:8px 'Space Mono',monospace;letter-spacing:1px;color:#9fb0a4}
+.zd-c.done{border-color:#d8ff3880;background:linear-gradient(150deg,#d8ff3822,#00000030)}.zd-c.done b{color:var(--acid,#d8ff38)}
+.zpro-tune{margin:8px 0 14px}
+.zt-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:8px}
+.zt-p{padding:10px;border:1px solid #ffffff2e;background:linear-gradient(150deg,#ffffff0d,#00000030);display:flex;flex-direction:column;gap:5px}
+.zt-h{display:flex;justify-content:space-between;align-items:baseline;font:700 13px 'Barlow Condensed',Impact,sans-serif;letter-spacing:1px;color:#f1f4ee}
+.zt-h em{font:8px 'Space Mono',monospace;font-style:normal;color:var(--acid,#d8ff38);letter-spacing:1px}
+.zt-bar{height:4px;background:#ffffff1c}.zt-bar u{display:block;height:100%;background:var(--acid,#d8ff38);box-shadow:0 0 8px #d8ff3899}
+.zt-p small{font:8px/1.5 'Space Mono',monospace;color:#9fb0a4;min-height:3.9em}
+.zt-buy,.zt-t,.zt-switch{cursor:pointer;border:1px solid #ffffff40;background:#111a1d;color:#eef3ea;font:700 11px 'Space Mono',monospace;letter-spacing:1px;padding:8px 9px;text-align:center}
+.zt-buy:hover:not(:disabled),.zt-t:hover,.zt-switch:hover{border-color:var(--acid,#d8ff38);color:var(--acid,#d8ff38)}
+.zt-buy:disabled{opacity:.55;cursor:default}
+.zt-label{margin:12px 0 6px;font:8px 'Space Mono',monospace;letter-spacing:2px;color:#9fb0a4}
+.zt-tyres{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:7px}
+.zt-t{display:flex;flex-direction:column;gap:3px;text-align:left}.zt-t b{font:700 13px 'Barlow Condensed',Impact,sans-serif;letter-spacing:1px}
+.zt-t small{font:7.5px/1.4 'Space Mono',monospace;color:#9fb0a4;font-weight:400}.zt-t em{font:8px 'Space Mono',monospace;font-style:normal;color:var(--acid,#d8ff38)}
+.zt-t.sel{border-color:var(--acid,#d8ff38);background:linear-gradient(150deg,#d8ff3822,#0a1114)}
+.zt-tog{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.zt-switch{flex:1 1 220px}.zt-switch.on{border-color:#d8ff3899;color:var(--acid,#d8ff38)}
+
+/* PRO HUD (PC): thin strip, bottom centre; hidden on phones where the touch controls need the space */
+.zpro-hud{position:fixed;left:50%;bottom:8px;transform:translateX(-50%);z-index:5;display:flex;gap:10px;padding:6px 10px;pointer-events:none;background:#070d10b8;border:1px solid #ffffff22;backdrop-filter:blur(3px)}
+.zpro-hud.hidden{display:none}
+.zh-i{display:flex;flex-direction:column;gap:2px;min-width:92px}.zh-i small{font:7px 'Space Mono',monospace;letter-spacing:1.5px;color:#8fa296}
+.zh-i b{font:700 11px 'Space Mono',monospace;color:#f4f6f1;letter-spacing:.5px}
+.zh-i i{display:block;height:3px;background:#ffffff1e}.zh-i u{display:block;height:100%;width:0;background:var(--acid,#d8ff38);transition:width .12s linear}
+.zh-i u.s-cold{background:#5fb4ff}.zh-i u.s-hot{background:#ff6a3d}.zh-i u.s-ok{background:#74ff8a}
+@media (pointer:coarse),(max-height:430px){.zpro-hud{display:none!important}}
+
+/* REALISM FX overlay (sits between the WebGL canvas and the HUD) */
+.zpro-fx{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .4s}
+.zpro-fx.on{opacity:1}
+.zpro-vig{position:absolute;inset:0;--zv:.16;background:radial-gradient(ellipse at 50% 46%,transparent 52%,rgba(0,0,0,var(--zv)) 100%)}
+.zpro-vig.boost{background:radial-gradient(ellipse at 50% 46%,transparent 46%,rgba(30,90,200,calc(var(--zv)*.9)) 100%)}
+#zproFx{position:absolute;inset:0;width:100%;height:100%;margin:0}
+.zpro-grain{position:absolute;inset:0;opacity:.07;mix-blend-mode:overlay;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+@media (prefers-reduced-motion:reduce){.zpro-grain{display:none}}
+
+/* the garage already styles every <button> acid-yellow; keep tyre/switch buttons dark & readable */
+.zpro-tune .zt-t,.zpro-tune .zt-switch{background:#111a1d!important;color:#eef3ea!important;border:1px solid #ffffff40!important;margin:0!important}
+.zpro-tune .zt-t b{color:#f4f6f1!important}.zpro-tune .zt-t small{color:#9fb0a4!important}.zpro-tune .zt-t em{color:var(--acid,#d8ff38)!important}
+.zpro-tune .zt-t.sel{background:linear-gradient(150deg,#d8ff3826,#0a1114)!important;border-color:var(--acid,#d8ff38)!important}
+.zpro-tune .zt-switch.on{color:var(--acid,#d8ff38)!important;border-color:#d8ff3899!important}
+.zpro-tune .zt-t:hover,.zpro-tune .zt-switch:hover{border-color:var(--acid,#d8ff38)!important}
+
+/* MANUAL GEARBOX: shift messages + phone shift buttons */
+#zmanMsg{position:fixed;left:50%;top:24%;transform:translateX(-50%);z-index:6;pointer-events:none;font:800 clamp(16px,2.6vw,26px) 'Barlow Condensed',Impact,sans-serif;letter-spacing:3px;color:#f4f6f1;text-shadow:0 2px 16px #000c;opacity:0;transition:opacity .15s}
+#zmanMsg.show{opacity:1}#zmanMsg.good{color:#74ff8a}#zmanMsg.warn{color:#ffb347}
+.zman-shift{position:fixed;right:min(260px,34vw);bottom:64px;z-index:7;display:none;flex-direction:row;gap:12px}
+.zman-shift.on{display:flex}
+.zman-shift button{width:54px;height:54px;border-radius:50%;border:2px solid #ffffff66;background:#0a1216cc;color:#f4f6f1;font:700 20px 'Space Mono',monospace;touch-action:none;-webkit-tap-highlight-color:transparent}
+.zman-shift button:active{background:#e6c36a;color:#17120a;border-color:#e6c36a}

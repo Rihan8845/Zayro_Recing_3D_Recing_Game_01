@@ -1,0 +1,168 @@
+ZAYRO RACING — BUILD NOTES
+- Preserved the existing 4.0 game systems and gameplay code.
+- Added Daily Happiness Gift: 300–700 random credits once per local calendar day.
+- Consecutive daily claims add +100 CR per streak day beyond day 1, capped at +500 bonus.
+- Daily reward date/streak stored locally under dilseDailyGiftDate and dilseDailyGiftStreak.
+- Removed the 4.1 suffix from the game name and corrected the header branding to ZAYRO RACING.
+- Checks performed: JavaScript syntax, Python syntax, HTML parse/IDs, asset references, HTTP smoke test, ZIP integrity.
+- Full interactive WebGL gameplay was not exhaustively tested.
+
+
+- Added three driving profiles: PC keyboard/arrow keys, mobile touch buttons, and virtual steering wheel.
+- Touch buttons and steering wheel modes both include on-screen accelerator, brake, reverse and nitro controls.
+- Coarse-pointer/mobile devices default to touch buttons; the selected driving profile is saved locally.
+- PC users retain keyboard/arrow controls and can optionally select either touch mode.
+
+
+ULTRA GRAPHICS UPGRADE
+- Improved WebGL lighting with directional light, sky fill and subtle rim lighting.
+- Added metallic clear-coat highlights and view-angle Fresnel reflections to car paint and trim.
+- Enhanced asphalt micro-texture, road sheen and wet-road reflections in rain.
+- Refined headlight falloff and atmospheric fog distance for stronger depth.
+- Ultra preset now uses a sharper render scale; adaptive scaling remains enabled to help maintain performance.
+- Select GRAPHICS QUALITY -> ULTRA in the garage for the highest-quality render setting.
+- These are stylized real-time WebGL effects, not a full ray-traced renderer; performance depends on the device/browser.
+
+
+ZAYRO PRO PACK v5.0 (zayro_plus.js + zayro_plus.css, loaded after game.js; base game code untouched)
+- Driver XP and levels (ROOKIE -> ICON). XP from distance, near misses, skill points and finishes; level-ups pay credits.
+- 15 achievements with credit rewards and unlock banners; shown in the garage.
+- 3 daily challenges (change every local day) with credit rewards.
+- Speed lines, nitro vignette and low-health red pulse overlay (reduced on Performance mode / low FPS).
+- Live callouts: NEAR MISS, COMBO, SLIPSTREAM, 200/250/300 KM/H.
+- Run report on finish/eliminated screen, plus a skill-score credit bonus (and +150 CR for a crash-free finish).
+- Shortcuts: P pause, F fullscreen, M music. Race auto-pauses when the tab is hidden.
+- New save keys zayroXP, zayroAch, zayroDaily, zayroStats are included in driver-save export/import.
+
+ZAYRO REALISM PACK v7.0
+- index.html now loads zayro_realism.css/js (v6.0 GTA layer) after zayro_plus.js.
+- game.js: new vertex/fragment shaders (sky dome, env reflections, wet road, lamp pools, lit windows, grading), weather-aware fog/clear colour, lag chase camera.
+- Fixed: road asphalt was 0.07 above lane markings, hiding them; road/cross-street slabs lowered, car contact shadow re-seated.
+- Tested headless (software WebGL): clear/rain/night, race and city modes, all 5 road themes loaded, no console errors. Real-GPU frame rate not measured.
+
+ZAYRO CARS v8.0
+- New zayro_cars.js (loaded after zayro_realism.js) replaces drawCar with lofted smooth meshes (5 styles). Trucks/buses unchanged.
+- Tested headless: rear/3-4/side views, day + night, no console errors. Not measured on a real GPU.
+
+ZAYRO ULTRA v9.0 (zayro_ultra.js, loaded after zayro_cars.js; base game code untouched)
+- Roads: tyre-wear tracks per lane, cat's-eye reflectors, edge reflectors, delineator posts, km markers, 5 concrete overpasses with pillars (race mode), per-theme roadside scrub/rocks/cacti/snow banks/pines, glowing neon barrier rail on Neon Night.
+- Cars: visible crash damage on the smooth car bodies (scrapes, cracked windscreen, hanging splitter, crumpled/popped hood, lost mirrors).
+- Power: launch boost, drift boost (sliding refills nitro), high-speed downforce stability, turbo whistle, blow-off valve on throttle lift, sub-bass engine layer.
+- Tested headless (software WebGL): 3 road themes, day/night, crash damage, no script errors. Real-GPU frame rate not measured.
+
+ZAYRO CARS v8.1: 5 distinct car designs (zayro_cars.js), DIM updated in zayro_ultra.js.
+
+ZAYRO REAL v10.0 (zayro_real.js, loaded after zayro_ultra.js; base game code untouched)
+- Wheels: lathe-profiled tyres, dished alloy rims (5 designs), lip, lug nuts, brake discs (glow when hot), calipers; traffic/rival wheels now spin.
+- Cars: number-plate characters, reverse lights, neon under-glow on Neon Night; power tune (+12% accel, +4% top speed, +4% grip, +8% nitro).
+- Roads: concrete slab shades + expansion joints, tar snakes, shoulder gravel, terrain colour patches, barrier reflectors, speed-limit signs, tall trees/pines.
+- Tested headless (software WebGL): Street Racer/Hyper RS/Champion X/Volt/Muscle, City/Snow/Neon roads, no script errors. Real-GPU frame rate not measured.
+
+ZAYRO EXTRA v11.0 (zayro_extra.js/.css, loaded after zayro_real.js; base game code untouched)
+- Roads: Sunset Coast, Volcano Pass. Cars: Phantom GT, Solar Titan (buy with credits).
+- Checks: JS syntax only. Not run in a real browser/GPU yet.
+
+
+ZAYRO PHOTO v12.0 (zayro_photo.js, loaded after zayro_extra.js; game.js fragment shader upgraded)
+- Shader: clear-coat car paint (tight sun highlight), stronger glass reflections, ambient occlusion on cars (under-body, arches, tyres), asphalt-grey ground bounce in reflections, asphalt aggregate sparkle, dusty road edge, macro tone variation, grass/dirt noise on ground, stained walls, worn + retro-reflective lane paint in headlights, highlight roll-off.
+- FIX: concrete slabs/tar/tracks from zayro_real/ultra were covering the asphalt shader, so rain puddles and reflections never showed in race mode. They are now flagged as road (b.isRoad).
+- Cars: soft blended sun shadows (old hard black ovals removed from zayro_cars.js / zayro_extra.js), tyre smoke when drifting or braking hard, door handles.
+- Roads (race mode): repair patches, skid marks, manhole covers, roadside grass/scrub tufts.
+- Tested headless (software WebGL, ~6 FPS): clear and rain, race mode, no console errors; night loaded without errors. Real-GPU frame rate not measured.
+
+
+ZAYRO LEGEND v13.0 (zayro_legend.js/.css, loaded after zayro_photo.js; base game code untouched)
+- Road 08 Misty Pines: dawn forest mountain road, ~340 layered pines, autumn maples, ferns, mossy boulders, fallen logs, timber guard-rails, wildlife signs, leaves on the asphalt, forested ridges, cold dawn fog; screen layer with sun shafts, mist banks, falling leaves.
+- Car 08 Stratos Zero (20,000 CR): mid-engine hypercar, lofted body, racing stripes, louvres, side blades, canards, LED lights, tail bar, centre-exit exhaust, active rear wing, own tyre/wheel design, soft shadow, tyre smoke, crash damage.
+- Checks: JS syntax + a mocked-GL run (build road, draw car day/night/cockpit, no errors). Not run in a real browser/GPU yet.
+
+
+ZAYRO CHAMPION REWARDS v1.0
+- Added finish-screen certificate unlock after a completed race stage (not on elimination/free roam).
+- Creates an offline A4 landscape PDF with player name, stage name, Gold World Cup vector trophy, founder Rihan, date/time and unique certificate ID.
+- Added responsive gold/black reward panel; no external PDF library or network call required.
+- Certificate records are stored locally by player name + stage.
+- Checks: JavaScript syntax, HTML parse, PDF structure smoke test, package asset/reference check and local HTTP smoke test.
+
+
+Release package notes:
+- Packaged the available current game files under their exact referenced filenames.
+- Removed two script references (zayro_ultra.js and zayro_real.js) because those source files were not present in the supplied project files; the available game, realism, cars, extra, photo and legend files remain loaded.
+- Certificate UI is responsive and the finish dialog scrolls on small screens so the download control stays accessible.
+
+
+ZAYRO FINISH v1.0 + CHAMPION REWARDS v2.0 (zayro_finish.js/.css, new zayro_certificate.js/.css; base game code untouched)
+- FINISH GATE on every road and every stage (Circuit, Sprint 800 m, Time Trial): placed at raceTargetDistance, exactly where the stage ends.
+  LED truss gantry, big FINISH display + ZAYRO RACING sub-line, chequered panels, floodlights, chequered line on the asphalt,
+  glowing approach markers, 300/200/100 m boards, flags, sponsor boards, roofed grandstands with crowd.
+- HUD countdown "FINISH 300 M" and a chequered-flag celebration (flash, confetti, short fanfare) on stage clear.
+- Certificate v2: dark collector edition + print-friendly light edition, gold-foil gradients, laurel wreath + trophy, seal with ribbons,
+  chequered borders, exact Helvetica/Times metrics, Gold or Silver World Cup according to the medal earned, finish speed field.
+- Finish screen shows a mini certificate preview card above the download buttons.
+- Checks: JS syntax, mocked-GL geometry build for Z=800/1200/3300 (no NaN), certificate PDF rendered via poppler (dark+light, long names).
+  The gate was NOT viewed in a real WebGL browser/GPU here.
+
+
+ZAYRO MOBILE v1.0 (zayro_mobile.js/.css, manifest.webmanifest, sw.js, icons; base game code untouched)
+- Phone render cap (devicePixelRatio 1.25-1.75 by device), first-run quality tier, auto-drop to Performance when FPS stays under 30, battery saver below 20 %.
+- Tilt steering (accelerometer, FLIP + CENTER), haptics (crash / nitro / finish), camera FX (speed shake, nitro zoom, crash hit),
+  screen wake lock while racing, fullscreen + landscape lock, rotate-phone hint, "MOBILE+" settings button (left edge).
+- Installable offline app (PWA). Sensors, wake lock, fullscreen lock and install need https (or localhost).
+- Tested in headless Chromium (software WebGL): phone viewport load, dpr cap, auto quality, panel UI, tilt axis mapping (landscape),
+  drive to the finish gate (gate, grandstands, finish line, FINISH countdown), stage clear -> finish screen + certificate card. No script errors.
+- Not tested on a real phone/GPU: real frame rate, vibration, wake lock, fullscreen lock, PWA install.
+
+
+ZAYRO GRAPHICS v14.0 (zayro_graphics.js/.css)
+- Base-code touch: game.js shader got uniform uFogX (fog density, default 0 = unchanged); zayro_photo.js skips shadow/smoke while a mirror pass runs.
+- WEATHER+ buttons (next to CLEAR/RAIN/NIGHT): STORM (darker sky, heavy rain, lightning + thunder), FOG (real distance fog), SNOW (falling snow).
+  Lightning flashes are disabled when the device has "reduce motion" enabled.
+- Rain lens drops, wet-road mirror reflection of your car + nearby cars (not in PERFORMANCE quality), tyre spray in rain.
+- Crash damage: scrapes, crumpled corners, hanging splitter, scorched hood, hood smoke, impact sparks, sparks from the dragging bumper.
+- Tested headless (software WebGL): storm, fog, snow, wet reflection, damage + sparks; no script errors. Real-GPU frame rate not measured.
+
+
+MOBILE v1.1 — controls + steering fix
+- FIX: touch buttons / steering wheel no longer show over the intro, garage, pause or finish screens (visible only while driving).
+- Realistic racing wheel (zayro_mobile.js/.css): D-shaped rim with stitching and perforated grips, carbon spokes, paddle shifters, hub badge, 12 o'clock marker.
+  Grab-and-turn (finger angle around the hub), +-200 deg of rotation (full lock at 110 deg), spring return with slight overshoot, tilt steering drives the same wheel.
+- Compact phone HUD (setting "Compact HUD"): map, skill card, key hints and XP bar hidden, speed/nitro cards moved beside the wheel so nothing overlaps wheel, pedals or car.
+- Tested headless phone viewport: intro/garage hidden, drive visible, pause hidden, drag 70 deg -> steer 0.64, release returns to centre. Not tested on a real phone.
+
+MOBILE v1.2 — touch UI on laptops too
+- While a touch mode (wheel/buttons) is active and the race is running (any device, incl. touch laptops): nitro/crash/tyre/engine panel, skill card and keyboard-hint bar are hidden;
+  speed card sits beside the wheel; nitro level is shown as a bar on the NITRO button.
+
+MOBILE v1.3
+- FIX: steering wheel no longer appears in touch BUTTON mode (only ◀ ▶).
+- Touch driving: speed box hidden too; small boxless speed number at bottom centre (setting "Speed readout" in the 📱 panel).
+
+
+ZAYRO COCKPIT v1.0 (zayro_cockpit.js/.css, loaded last; base game code untouched)
+- Pedal buttons (GO/BRAKE/REV/NITRO) restyled as realistic metal-frame rubber pedals; steer buttons as chrome-ring rubber domes.
+- CIRCUIT MAP redrawn as a top-down GPS display: asphalt, kerbs, barriers, lane lines, finish line, car sprites, headlight cone, night/rain tint, glass bezel.
+- Tested headless (software WebGL): race mode, no script errors. Not tested on a real phone/GPU.
+
+
+ZAYRO APEX v1.0 (zayro_apex.js/.css, loaded last; base game code untouched)
+- Instrument cluster (desktop/keyboard): analogue speedometer 0-360, tachometer with redline + shift light, gear, friction-circle G meter, nitro/engine/tyre bars, turbo gauge.
+- Turbo spool: up to ~+15% mid-range pull + launch kick, never above the car's normal top speed. Turbo whistle + blow-off valve, wind rush, tyre squeal (WebAudio).
+- Telemetry on the finish screen (top/avg speed, peak G, drift time, turbo time). V = hide HUD (photo mode).
+- Tested headless (software WebGL, ~5 FPS): cluster renders, finish telemetry appears, no script errors. Power gain and audio not felt on a real GPU/speakers.
+
+
+ZAYRO v6.0 — MULTIPLAYER + POSITION CERTIFICATES + WINNER REWARDS
+- New: zayro_results.js (race result/position engine, DNF handling), zayro_certificate.js v3 (position certificates), zayro_rewards.js/.css (reward engine, Victory screen, Winner's Cabinet),
+  zayro_mp.js/.css/zayro_mp_config.js (online client), multiplayer-server/ (Node WebSocket server, zero dependencies, with tests).
+- Additive hooks only: zayro_extra.js (window.__zrBonusCars), zayro_legend.js (window.__zrLegendCar), zayro_plus.js (window.__zrPlus.addXP), index.html (new tags), sw.js (cache list + v15).
+- game.js / style.css and all other existing files are byte-identical to the previous release.
+- See TESTING_REPORT.md for what was and was not tested.
+
+ZAYRO v7.0 — PRO PACK
+- New: zayro_pro.js / zayro_pro.css (Pro Realism driving layer, Tuning Shop, Realism FX overlay, Daily Challenges, Pro HUD).
+- Wraps update() and startRace() from outside; temporarily adds virtual upgrade levels for the duration of one update() call and always restores garageUpgrades afterwards.
+- index.html: +1 stylesheet, +1 script. sw.js: cache v16 and the two new files.
+
+v7.3: manual gearbox in zayro_pro.js/css (no changes to game.js/style.css).
+
+v7.4: Pro HUD strip (tyres / turbo / G-force) removed from the race screen. Everything else unchanged.

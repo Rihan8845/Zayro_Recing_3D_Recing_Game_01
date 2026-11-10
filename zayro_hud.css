@@ -1,0 +1,147 @@
+/* ZAYRO HUD v1.0 — racing-screen redesign: carbon glass cards, champagne-gold accents, glowing readouts,
+   keycap hints, speed-edge glow. Visual only (no layout/size changes), loaded last. Delete the line in index.html to undo. */
+:root{--zh-gold:#e6c36a;--zh-gold-hi:#fff0b8;--zh-gold-lo:#a8761f;--zh-ink:#f7f3e6}
+
+/* ---------- cards */
+.hud .race-card,.hud .timer-card,.hud .rank-card,.hud .speed-card,.hud .nitro-card,.hud .skill-card,.hud .minimap-card{
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,0) 40%),
+    repeating-linear-gradient(45deg,rgba(255,255,255,.03) 0 2px,transparent 2px 4px),
+    linear-gradient(155deg,rgba(26,23,18,.9),rgba(7,9,11,.94))!important;
+  border:1px solid rgba(230,195,106,.30)!important;
+  box-shadow:0 16px 36px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,236,170,.2),inset 0 0 26px rgba(230,195,106,.05)!important;
+  backdrop-filter:blur(10px) saturate(1.2);
+  clip-path:polygon(0 0,calc(100% - 0px) 0,100% 0,100% calc(100% - 13px),calc(100% - 13px) 100%,12px 100%,0 calc(100% - 12px))!important;
+}
+.hud .race-card,.hud .timer-card,.hud .rank-card{position:relative}
+.hud .race-card::before,.hud .timer-card::before,.hud .rank-card::before,.hud .skill-card::before,.hud .minimap-card::before{
+  content:"";position:absolute;left:0;top:0;width:52%;height:2px;pointer-events:none;
+  background:linear-gradient(90deg,var(--zh-gold-hi),var(--zh-gold) 40%,transparent);box-shadow:0 0 12px rgba(230,195,106,.7)}
+.hud .race-card::after,.hud .timer-card::after,.hud .rank-card::after{
+  content:"";position:absolute;right:0;bottom:0;width:15px;height:15px;pointer-events:none;
+  background:linear-gradient(135deg,transparent 52%,rgba(230,195,106,.7) 52% 62%,transparent 62%)}
+.hud .eyebrow{color:var(--zh-gold)!important;letter-spacing:2.4px;text-shadow:0 0 10px rgba(230,195,106,.35)}
+
+/* ---------- stage / distance */
+.hud .lap-line{font:900 italic 38px/1 'Barlow Condensed',Impact,sans-serif;letter-spacing:1px}
+.hud .lap-line #distance{background:linear-gradient(180deg,#fff,var(--zh-gold-hi) 55%,var(--zh-gold));-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 10px rgba(230,195,106,.35))}
+.hud .lap-bar{height:5px!important;background:rgba(255,255,255,.1)!important;box-shadow:inset 0 1px 2px #000}
+.hud .lap-bar i,.hud #lapbar{background:linear-gradient(90deg,var(--zh-gold-lo),var(--zh-gold),var(--zh-gold-hi))!important;box-shadow:0 0 12px rgba(243,217,138,.85)}
+
+/* ---------- timer */
+.hud .timer-card #timer{font:700 26px 'Space Mono',monospace!important;color:var(--zh-ink);letter-spacing:.5px;text-shadow:0 0 14px rgba(243,217,138,.4),0 2px 0 #000}
+.hud .timer-card .best,.hud .timer-card .ghost-delta{color:#9fada3}
+
+/* ---------- position */
+.hud .rank-card #racePosition{font:900 italic 50px/1 'Barlow Condensed',Impact,sans-serif!important;letter-spacing:1px;
+  background:linear-gradient(180deg,#fff,var(--zh-gold-hi) 50%,var(--zh-gold));-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 12px rgba(230,195,106,.4))}
+.hud .rank-card #racePosition small{font:700 11px 'Space Mono',monospace!important;-webkit-text-fill-color:#aab5b1;letter-spacing:1px;filter:none}
+.hud .rank-card[data-pos="1"] #racePosition{background:linear-gradient(180deg,#fff7d0,#f2c14e 55%,#b9821f);-webkit-background-clip:text;background-clip:text;filter:drop-shadow(0 0 16px rgba(255,205,80,.7))}
+.hud .rank-card[data-pos="2"] #racePosition{background:linear-gradient(180deg,#fff,#c3ccd8 55%,#7d8794);-webkit-background-clip:text;background-clip:text;filter:drop-shadow(0 0 12px rgba(200,215,235,.5))}
+.hud .rank-card[data-pos="3"] #racePosition{background:linear-gradient(180deg,#ffe3c9,#d08a4a 55%,#8d5a2a);-webkit-background-clip:text;background-clip:text;filter:drop-shadow(0 0 12px rgba(215,140,70,.5))}
+.hud .rank-card[data-pos="4"] #racePosition,.hud .rank-card[data-pos="5"] #racePosition{background:linear-gradient(180deg,#e7f3ff,#7fb4e6 55%,#4b7aa8);-webkit-background-clip:text;background-clip:text;filter:drop-shadow(0 0 10px rgba(120,170,230,.45))}
+.hud .rank-card .rank-sub{color:#c9c2a8!important;letter-spacing:1.4px}
+
+/* ---------- XP bar (top centre) */
+.zp-xp{background:linear-gradient(180deg,rgba(255,255,255,.07),transparent 45%),linear-gradient(155deg,rgba(26,23,18,.9),rgba(7,9,11,.94))!important;border:1px solid rgba(230,195,106,.32)!important;box-shadow:0 12px 30px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,236,170,.2)}
+.zp-xp b{color:var(--zh-gold-hi)!important;text-shadow:0 0 10px rgba(230,195,106,.5)}
+.zp-xpbar{height:4px!important;background:rgba(255,255,255,.1)!important}
+.zp-xpbar i{background:linear-gradient(90deg,var(--zh-gold-lo),var(--zh-gold),#5de4ff)!important;box-shadow:0 0 10px rgba(230,195,106,.7)}
+
+/* ---------- map / skill */
+.hud .minimap-card{border-color:rgba(230,195,106,.34)!important}
+.hud .skill-card strong#skillScore{font:900 italic 40px/1 'Barlow Condensed',Impact,sans-serif!important;letter-spacing:1px;
+  background:linear-gradient(180deg,#fff,var(--zh-gold-hi) 55%,var(--zh-gold));-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 12px rgba(230,195,106,.4))}
+.hud .skill-card .skill-row b{color:var(--zh-gold-hi)}
+.hud .skill-card .skill-status{color:#7fe3ff;letter-spacing:2px;text-shadow:0 0 10px rgba(93,228,255,.45)}
+.hud .skill-card .skill-status.active{color:#ffd54a;text-shadow:0 0 12px rgba(255,200,60,.6)}
+
+/* ---------- nitro / condition bars (when the classic panels are visible) */
+.hud .nitro-track,.hud .condition-track,.hud .damage-track{background:rgba(255,255,255,.09)!important;box-shadow:inset 0 1px 2px #000}
+.hud #nitrobar{background:linear-gradient(90deg,#2aa9ff,#5de4ff,#d8ff38)!important;box-shadow:0 0 12px rgba(93,228,255,.7)}
+.hud .speed-card .speed-number span{text-shadow:0 0 18px rgba(243,217,138,.35)}
+
+/* ---------- top bar */
+.topbar{background:linear-gradient(180deg,rgba(5,6,8,.9),transparent)!important;border-bottom:0!important}
+.topbar::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:linear-gradient(90deg,transparent,rgba(230,195,106,.7) 18%,rgba(230,195,106,.15) 70%,transparent)}
+.topbar .brand-mark{background:linear-gradient(135deg,#f8e6ae,#e6c36a 55%,#b88a2e)!important;color:#17120a!important;box-shadow:0 0 18px rgba(230,195,106,.4)}
+.topbar .live-dot{background:var(--zh-gold)!important;box-shadow:0 0 10px var(--zh-gold)!important}
+.topbar .sound-toggle{border-color:rgba(230,195,106,.55)!important;color:var(--zh-gold)!important;background:rgba(10,9,7,.7)!important}
+
+/* ---------- key hints as keycaps */
+.bottom-bar{background:linear-gradient(transparent,rgba(4,5,7,.88))!important}
+.bottom-bar kbd{display:inline-block;min-width:22px;padding:3px 7px 2px;margin:0 2px;border-radius:5px;border:1px solid #5b6268;border-bottom-width:3px;
+  background:linear-gradient(180deg,#3c4146,#15181b);color:#f4f1e6;font:700 10px 'Space Mono',monospace;text-align:center;box-shadow:0 3px 6px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.18)}
+.bottom-bar .controls span{color:#b6b9ad;letter-spacing:.8px}
+.bottom-bar .camera-label{color:var(--zh-gold);letter-spacing:2px;text-shadow:0 0 10px rgba(230,195,106,.4)}
+.bottom-bar .camera-label span{color:var(--zh-gold-hi)}
+
+/* ---------- toast */
+.toast{background:linear-gradient(155deg,rgba(28,24,16,.95),rgba(8,9,11,.96))!important;border:1px solid rgba(230,195,106,.55)!important;color:var(--zh-ink)!important;box-shadow:0 12px 34px rgba(0,0,0,.6),0 0 22px rgba(230,195,106,.22)!important}
+
+/* ---------- speed edge glow (driven by zayro_hud.js) */
+#zhEdge{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:0;transition:opacity .25s;
+  background:radial-gradient(ellipse at 50% 54%,transparent 52%,rgba(6,12,26,.55) 100%)}
+#zhEdge::before{content:"";position:absolute;inset:0;
+  background:repeating-linear-gradient(90deg,transparent 0 46px,rgba(255,255,255,.07) 46px 48px);
+  -webkit-mask:radial-gradient(ellipse at 50% 54%,transparent 52%,#000 100%);mask:radial-gradient(ellipse at 50% 54%,transparent 52%,#000 100%);
+  animation:zhStreak .5s linear infinite;opacity:.8}
+@keyframes zhStreak{to{background-position:0 90px}}
+body.zh-nitro #zhEdge{background:radial-gradient(ellipse at 50% 54%,transparent 40%,rgba(40,130,255,.42) 100%)}
+body.zh-nitro #zhEdge::before{background:repeating-linear-gradient(90deg,transparent 0 30px,rgba(150,215,255,.16) 30px 32px);animation-duration:.22s}
+body.za-hud-off #zhEdge{display:none}
+@media(prefers-reduced-motion:reduce){#zhEdge::before{animation:none}}
+@media(max-width:700px){.hud .lap-line{font-size:28px}.hud .rank-card #racePosition{font-size:38px}.hud .timer-card #timer{font-size:19px!important}}
+
+/* ---------- fit fixes (keep cards compact, no wrapping) */
+.hud .hud-top{align-items:flex-start}
+.hud .eyebrow{letter-spacing:1.6px!important;white-space:nowrap}
+.hud .race-card .eyebrow{white-space:normal}
+.hud .rank-card,.hud .timer-card{white-space:nowrap}
+.hud .rank-card #racePosition{font-size:44px!important}
+.hud .rank-card .rank-sub{letter-spacing:.6px!important;font-size:9px}
+.hud .lap-line{font-size:34px}
+.hud .timer-card #timer{font-size:23px!important}
+.hud .timer-card .ghost-delta{white-space:normal;max-width:120px}
+.bottom-bar .controls{gap:10px 14px;flex-wrap:wrap}
+.bottom-bar .controls span{white-space:nowrap;font-size:9.5px;letter-spacing:.4px}
+.bottom-bar kbd{min-width:18px;padding:2px 5px 1px;margin:0 1px;font-size:9px}
+.bottom-bar .camera-label{white-space:nowrap;letter-spacing:1px;margin-left:12px}
+
+/* ================= v1.1 — driver plate (XP card + player name) and creator signature ================= */
+/* the full-width gold line crossed the XP card: keep it short, under the brand only */
+.topbar::after{right:auto!important;width:min(42%,520px)!important;background:linear-gradient(90deg,rgba(230,195,106,.75),rgba(230,195,106,.12) 75%,transparent)!important}
+
+#zpXp.zp-xp{
+  display:grid!important;width:250px;padding:9px 12px 8px!important;gap:3px 9px!important;align-items:center;
+  grid-template-columns:auto 1fr auto;
+  grid-template-areas:"lv name rank" "bar bar bar" "txt txt txt";
+  top:72px;
+  clip-path:polygon(0 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,10px 100%,0 calc(100% - 10px))}
+#zpXp::before{content:"";position:absolute;left:0;top:0;width:60%;height:2px;background:linear-gradient(90deg,#fff0b8,#e6c36a 45%,transparent);box-shadow:0 0 12px rgba(230,195,106,.8)}
+#zpXp b#zpLv{grid-area:lv;display:grid;place-items:center;min-width:42px;height:24px;padding:0 6px;
+  font:900 italic 14px/1 'Barlow Condensed',Impact,sans-serif!important;letter-spacing:1px;color:#17120a!important;text-shadow:none!important;
+  background:linear-gradient(135deg,#fff0b8,#e6c36a 55%,#a8761f);clip-path:polygon(0 0,100% 0,calc(100% - 6px) 100%,0 100%);box-shadow:0 0 14px rgba(230,195,106,.5)}
+#zpXp #zhName{grid-area:name;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:center;font-style:italic;
+  font:900 italic 21px/1 'Barlow Condensed',Impact,sans-serif;letter-spacing:5px;text-transform:uppercase;
+  background:linear-gradient(100deg,#b88a2e 0%,#fff0b8 22%,#e6c36a 40%,#fff7d8 52%,#e6c36a 64%,#a8761f 100%);background-size:220% 100%;
+  -webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 9px rgba(230,195,106,.45));
+  animation:zhFoil 5s linear infinite}
+@keyframes zhFoil{from{background-position:120% 0}to{background-position:-120% 0}}
+#zpXp span#zpRank{grid-area:rank;font:700 8.5px 'Space Mono',monospace!important;letter-spacing:1.6px;color:#7fe3ff!important;text-shadow:0 0 8px rgba(93,228,255,.5)}
+#zpXp .zp-xpbar{grid-area:bar!important;order:0!important;height:6px!important;margin:2px 0 0!important;position:relative;background:rgba(255,255,255,.1)!important;box-shadow:inset 0 1px 2px #000}
+#zpXp .zp-xpbar::after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(90deg,transparent 0 19px,rgba(0,0,0,.55) 19px 20px)}
+#zpXp .zp-xpbar i{position:relative;box-shadow:0 0 12px rgba(230,195,106,.8)}
+#zpXp .zp-xpbar i::after{content:"";position:absolute;right:-1px;top:-2px;bottom:-2px;width:3px;background:#fff;box-shadow:0 0 10px #fff,0 0 18px #5de4ff}
+#zpXp small#zpXpTxt{grid-area:txt!important;text-align:right;font:700 8.5px 'Space Mono',monospace!important;letter-spacing:1.4px;color:#cfc7ad!important}
+@media(max-width:700px){#zpXp.zp-xp{top:150px;width:176px}#zpXp #zhName{font-size:15px;letter-spacing:3px}#zpXp span#zpRank{display:none}#zpXp{grid-template-columns:auto 1fr}}
+@media(prefers-reduced-motion:reduce){#zpXp #zhName{animation:none}}
+
+/* creator signature in the top bar */
+.topbar .creator-tag{display:inline-flex!important;align-items:center;gap:7px;font:700 8px 'Space Mono',monospace!important;letter-spacing:2.2px!important;color:#9a927c!important}
+.topbar .creator-tag::before{content:"";width:26px;height:1px;background:linear-gradient(90deg,transparent,#e6c36a)}
+.topbar .creator-tag b{font:900 italic 17px/1 'Barlow Condensed',Impact,sans-serif;letter-spacing:5px;
+  background:linear-gradient(100deg,#b88a2e 0%,#fff0b8 24%,#e6c36a 42%,#fff7d8 54%,#e6c36a 66%,#a8761f 100%);background-size:220% 100%;
+  -webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 8px rgba(230,195,106,.5));animation:zhFoil 5s linear infinite}
+.topbar .creator-tag b::after{content:" ◆";font-style:normal;font-size:8px;letter-spacing:0;color:#e6c36a;-webkit-text-fill-color:#e6c36a}
+@media(prefers-reduced-motion:reduce){.topbar .creator-tag b{animation:none}}

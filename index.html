@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#0b1114">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="ZAYRO">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon-192.png">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <script src="zayro_mobile.js?v=20261104-mobile1"></script>
+  <title>ZAYRO RACING — Created by Rihan</title>
+  <link rel="stylesheet" href="style.css?v=20261030-mobile1">
+  <link rel="stylesheet" href="zayro_plus.css?v=20261030-pro1">
+  <link rel="stylesheet" href="zayro_realism.css?v=20261031-real1">
+  <link rel="stylesheet" href="zayro_certificate.css?v=20261107-cert3">
+  <link rel="stylesheet" href="zayro_extra.css?v=20261102-extra1">
+  <link rel="stylesheet" href="zayro_legend.css?v=20261102-legend1">
+  <link rel="stylesheet" href="zayro_finish.css?v=20261103-finish1">
+  <link rel="stylesheet" href="zayro_graphics.css?v=20261104-gfx1">
+  <link rel="stylesheet" href="zayro_mobile.css?v=20261104-mobile1">
+  <link rel="stylesheet" href="zayro_cockpit.css?v=20261105-cockpit1">
+  <link rel="stylesheet" href="zayro_apex.css?v=20261105-apex1">
+  <link rel="stylesheet" href="zayro_rewards.css?v=20261107-rewards1">
+  <link rel="stylesheet" href="zayro_mp.css?v=20261107-mp1">
+  <link rel="stylesheet" href="zayro_pro.css?v=20261108-pro1">
+  <link rel="stylesheet" href="zayro_theme.css?v=20261108-gold1">
+  <link rel="stylesheet" href="zayro_hud.css?v=20261110-hud2">
+  <link rel="stylesheet" href="zayro_premium.css?v=20261110-prem1">
+</head>
+<body>
+  <canvas id="game" aria-label="3D racing game"></canvas>
+  <div class="grain"></div><div id="weatherFX" aria-hidden="true"></div>
+  <header class="topbar"><div class="brand"><span class="brand-mark">Z</span><span>ZAYRO<span class="muted"> // RACING</span></span><small class="creator-tag">CREATED BY RIHAN</small></div><div class="top-right"><span class="live-dot"></span> LOCAL RACE <span class="divider">|</span> NO API <span id="fpsReadout" class="fps-readout" aria-live="off">FPS 60</span> <button id="soundToggle" class="sound-toggle">♫ MUSIC ON</button></div></header>
+  <section class="hud">
+    <div class="hud-top"><div class="race-card"><div class="eyebrow">STAGE <span id="stageNumber">01</span> · HIGHWAY RUN</div><div class="lap-line"><span id="distance">000</span><small> / <span id="targetDistance">1200</span> M</small></div><div class="lap-bar"><i id="lapbar"></i></div></div><div class="timer-card"><div class="eyebrow">TIME</div><div id="timer">00:00.00</div><div id="best" class="best">BEST --:--.--</div><div id="ghostDelta" class="ghost-delta">PERSONAL BEST GHOST · NONE</div></div><div class="rank-card"><div class="eyebrow">RACE POSITION</div><strong id="racePosition">P1 <small>/ 4</small></strong><div class="rank-sub" id="racePoints">0 PTS</div></div></div>
+    <div class="speed-card"><div class="speed-number"><span id="speed">000</span><small>KM/H</small></div><div class="gear" id="gear">GEAR 1</div><div class="rpm"><i id="rpmbar"></i></div></div>
+    <div class="nitro-card"><div class="nitro-title"><span>NITRO</span><span id="nitrolabel">100%</span></div><div class="nitro-track"><i id="nitrobar"></i></div><div class="nitro-hint">HOLD SHIFT TO BOOST</div><div class="damage-readout" id="damageReadout"><span>CRASH LIMIT</span><strong id="crashCount">0 / 3</strong><div class="damage-track"><i id="damageBar"></i></div></div><div class="condition-readout" id="conditionReadout"><div><span>TYRE WEAR</span><strong id="tyreWearLabel">0%</strong></div><div class="condition-track"><i id="tyreWearBar"></i></div><div><span>ENGINE TEMP</span><strong id="engineTempLabel">72°C</strong></div><div class="condition-track temp-track"><i id="engineTempBar"></i></div></div></div>
+    <div class="minimap-card"><div class="eyebrow" id="mapTitle">CIRCUIT MAP</div><canvas id="map" width="220" height="150"></canvas><div class="map-legend"><i></i> YOU <b></b> RIVALS</div></div>
+    <div class="skill-card" id="skillCard"><div class="eyebrow">DRIVER SKILL / LIVE</div><strong id="skillScore">0 PTS</strong><div class="skill-row"><span>COMBO</span><b id="skillCombo">x1 · 0</b></div><div class="skill-row"><span>NEAR MISSES</span><b id="nearMissCount">0</b></div><div class="skill-status" id="draftStatus">CLEAN AIR</div></div>
+    <div id="toast" class="toast"></div><div id="touchControls" class="touch-controls hidden"><div class="steer-pad"><button data-control="left" aria-label="Steer left">◀</button><div id="steeringWheel" class="steering-wheel" aria-label="Touch steering wheel"><span>↔</span><small>STEER</small></div><button data-control="right" aria-label="Steer right">▶</button></div><div class="pedal-pad"><button data-control="brake" class="brake-button">BRAKE</button><button data-control="reverse" class="reverse-button">REV</button><button data-control="boost" class="boost-button">NITRO</button><button data-control="accelerate" class="accelerate-button">GO ▲</button></div></div>
+    <div id="pause" class="pause hidden"><div class="pause-box"><div class="eyebrow">RACE CONTROL</div><h1 id="pauseTitle">PAUSED</h1><p>Press <kbd>ESC</kbd> to return to the race</p><button id="resume">RESUME RACE <span>↗</span></button></div></div><div id="finish" class="pause hidden"><div class="pause-box"><div class="eyebrow">CHAMPIONSHIP PROGRESS</div><h1 id="finishTitle">STAGE CLEARED</h1><div id="championCeremony" class="champion-ceremony hidden" aria-live="polite"></div><div id="trophyAward" class="trophy-award"><span class="trophy-icon">🏆</span><span><b>WORLD CUP</b><small>Complete the stage to earn your cup.</small></span></div><p id="finishMessage">Great driving!</p><div class="finish-speed-panel"><span>FINISH SPEED</span><strong id="finishSpeed">000 KM/H</strong></div><button id="nextStage">NEXT STAGE <span>↗</span></button><button id="stageMenu" class="secondary-button">STAGE SELECT</button></div></div><div id="outScreen" class="pause hidden"><div class="pause-box out-box"><div class="eyebrow">RACE CONTROL · ELIMINATED</div><h1>YOU’RE<br><span>OUT.</span></h1><div class="out-warning">⚠ THREE CRASHES · RACE OVER</div><div class="out-stats"><div><small>FINAL SPEED</small><b id="outSpeed">000 KM/H</b></div><div><small>DISTANCE</small><b id="outDistance">000 M</b></div></div><p id="outMessage">Your car took too much damage. Try again and avoid traffic.</p><button id="retryRace">RESTART RACE <span>↻</span></button><button id="outMenu" class="secondary-button">BACK TO GARAGE</button></div></div>
+  </section>
+  <footer class="bottom-bar"><div class="controls"><span><kbd>W</kbd>/<kbd>↑</kbd> GAS</span><span><kbd>S</kbd> BRAKE / REV</span><span><kbd>X</kbd> REVERSE</span><span><kbd>A</kbd><kbd>D</kbd> / ARROWS STEER</span><span><kbd>SHIFT</kbd> NITRO</span><span><kbd>C</kbd> CAMERA</span><span><kbd>R</kbd> RESET</span><span><kbd>ESC</kbd> PAUSE</span></div><div class="camera-label" id="cameraLabel">CHASE CAM <span>01 / 03</span></div></footer>
+  <div id="nameScreen" class="pause">
+  <div class="registration-world" aria-hidden="true">
+    <div class="world-grid"></div><div class="world-scan"></div>
+    <div class="world-data world-data-left"><span>ZAYRO MOTORSPORT</span><b>DRIVER SYSTEM / 01</b><small>LOCAL PROFILE · ENCRYPTED</small></div>
+    <div class="world-data world-data-right"><span>TRACK TELEMETRY</span><b>00.000 <i>KM/H</i></b><small>ENGINE STANDBY</small></div>
+    <div class="world-car"><i class="world-car-roof"></i><i class="world-car-glass"></i><i class="world-car-wheel wheel-left"></i><i class="world-car-wheel wheel-right"></i><i class="world-car-light"></i></div>
+    <div class="world-light-trail trail-one"></div><div class="world-light-trail trail-two"></div>
+  </div>
+  <form id="nameForm" class="pause-box name-box">
+    <div class="eyebrow"><i class="live-dot"></i> DRIVER REGISTRATION <span class="register-status">SYSTEM READY</span></div>
+    <div class="driver-emblem" aria-hidden="true"><div class="emblem-ring"></div><div class="emblem-core"><span id="driverInitial">A</span></div><i class="emblem-spark spark-one"></i><i class="emblem-spark spark-two"></i></div>
+    <h1>CLAIM YOUR<br><span>DRIVER ID.</span></h1>
+    <p>Every legend starts somewhere. Choose your name and join ZAYRO RACING.</p>
+    <label class="driver-label" for="playerName">YOUR RACING NAME <span>02 — 20 CHARACTERS</span></label>
+    <div class="name-input-wrap"><span class="input-prefix">ID</span><input id="playerName" maxlength="20" minlength="2" autocomplete="given-name" placeholder="e.g. RIHAN" required aria-describedby="nameHint"><span class="input-ready" aria-hidden="true">↵</span></div>
+    <div class="name-meta"><span id="nameHint">Use 2–20 characters</span><span id="nameCount">00 / 20</span></div>
+    <div class="driver-preview"><span class="preview-dot"></span><div><small>DRIVER PROFILE</small><strong id="driverPreviewName">YOUR NAME HERE</strong></div><span class="preview-class">ROOKIE</span></div>
+    <div class="profile-security"><div class="profile-security-copy"><span>PROFILE READINESS</span><b id="profileReadiness">00%</b></div><div class="profile-meter"><i id="profileReadinessBar"></i></div><small id="profileStatus">AWAITING DRIVER ID</small></div>
+    <button type="submit"><span>ENTER THE GARAGE</span><span class="continue-arrow">↗</span></button>
+    <div class="register-footer"><span>● LOCAL PROFILE</span><span>ZAYRO RACING DIVISION</span></div>
+  </form></div><div id="startscreen" class="startscreen hidden"><div class="start-content"><div class="eyebrow"><i class="live-dot"></i> OFFLINE ARCADE RACING</div><h1>OWN THE<br><span>ROAD.</span></h1><p id="welcomeMessage">Five stages. Five cars. Drive with heart, race with passion, and make every kilometre count.</p><div class="section-label">STAGE-BY-STAGE CAR UPGRADES</div><p class="garage-note">Complete each stage to unlock a more powerful car. Your car changes automatically when the next stage begins.</p><div class="car-select" id="carSelect"></div><div class="section-label stage-label">CHOOSE YOUR ROAD</div><div class="road-select" id="roadSelect"></div><div class="section-label stage-label">CHOOSE YOUR STAGE</div><div class="stage-select" id="stageSelect"></div><div class="section-label stage-label">RACE EVENT</div><div class="drive-modes" id="raceEventModes"><button class="mode-option selected" data-event="circuit">🏁 CIRCUIT</button><button class="mode-option" data-event="sprint">⚡ SPRINT</button><button class="mode-option" data-event="timeTrial">⏱ TIME TRIAL</button></div><p class="garage-note" id="raceEventHint">Circuit: race rivals to the stage finish.</p><div class="section-label stage-label">CUSTOM PAINT</div><div class="paint-select" id="paintSelect" aria-label="Choose car paint"></div><p class="garage-note">Paint colour is saved locally and applies to your player car.</p><div class="section-label stage-label">WORLD MODE</div><div class="drive-modes" id="worldModes"><button class="mode-option selected" data-world="race">🏁 CIRCUIT RACE</button><button class="mode-option" data-world="city">🏙 OPEN CITY FREE ROAM</button></div><p class="garage-note" id="worldModeHint">Race mode: complete stages, earn cups and unlock cars.</p>
+<div class="section-label stage-label">OPEN-WORLD MISSIONS</div><div class="drive-modes" id="missionModes"><button class="mode-option selected" data-mission="free">🚗 FREE DRIVE</button><button class="mode-option" data-mission="checkpoints">📍 CHECKPOINT RUN</button><button class="mode-option" data-mission="police">🚨 POLICE CHASE</button></div><p class="garage-note" id="missionHint">Explore the city freely. Choose a mission for rewards and a challenge.</p>
+<div class="section-label stage-label">ULTIMATE GARAGE TUNING</div><div class="tuning-wallet"><span>RACE CREDITS</span><strong id="creditBalance">1200 CR</strong></div>
+<div class="daily-gift-panel" id="dailyGiftPanel"><div class="daily-gift-icon" aria-hidden="true">🎁</div><div class="daily-gift-copy"><b>DAILY HAPPINESS GIFT</b><small id="dailyGiftMessage">A free surprise gift for every driver.</small><span id="dailyGiftStreak">LOGIN STREAK · 0 DAYS</span></div><button type="button" id="dailyGiftButton">CLAIM FREE GIFT ✨</button></div><div class="upgrade-grid"><button class="upgrade-option" data-upgrade="speed"><b>⚡ ENGINE ECU</b><small>+8 km/h per level</small><span id="speedUpgradeLevel">LEVEL 0/5</span><em id="speedUpgradePrice">BUY · 300 CR</em></button><button class="upgrade-option" data-upgrade="grip"><b>◉ PRO TYRES</b><small>Better corner grip</small><span id="gripUpgradeLevel">LEVEL 0/5</span><em id="gripUpgradePrice">BUY · 250 CR</em></button><button class="upgrade-option" data-upgrade="nitro"><b>🚀 NITRO KIT</b><small>Stronger boost</small><span id="nitroUpgradeLevel">LEVEL 0/5</span><em id="nitroUpgradePrice">BUY · 350 CR</em></button><button class="upgrade-option" data-upgrade="brakes"><b>🛑 SPORT BRAKES</b><small>Shorter braking distance</small><span id="brakesUpgradeLevel">LEVEL 0/5</span><em id="brakesUpgradePrice">BUY · 280 CR</em></button><button class="upgrade-option" data-upgrade="suspension"><b>🏁 TRACK SUSPENSION</b><small>More stable cornering</small><span id="suspensionUpgradeLevel">LEVEL 0/5</span><em id="suspensionUpgradePrice">BUY · 320 CR</em></button></div><p class="garage-note">Win races to earn credits. Upgrades are saved on this device.</p><div class="service-panel"><div><b>🔧 PIT CREW SERVICE</b><small>Replace worn tyres and restore peak grip.</small></div><button type="button" id="serviceCarButton">SERVICE CAR · 120 CR</button></div><p class="garage-note" id="serviceHint">Tyre wear carries between races and reduces grip slightly. Service your car in the garage.</p><div class="section-label stage-label">CAREER DIFFICULTY</div><div class="drive-modes" id="difficultyModes"><button class="mode-option" data-difficulty="rookie">🟢 ROOKIE</button><button class="mode-option" data-difficulty="pro">🔶 PRO</button><button class="mode-option" data-difficulty="legend">💀 LEGEND</button></div><p class="garage-note" id="difficultyHint">Pro: balanced traffic, rivals and rewards.</p><div class="section-label stage-label">CAREER TELEMETRY</div><div id="careerStats" class="career-stats"></div><p class="garage-note">Career statistics save locally on this device.</p><div class="profile-transfer"><button type="button" id="exportSaveButton">⬇ EXPORT DRIVER SAVE</button><button type="button" id="importSaveButton">⬆ IMPORT DRIVER SAVE</button><input id="importSaveFile" type="file" accept="application/json,.json" hidden></div><p class="garage-note">Move your driver profile between browsers or keep a backup file.</p><div class="section-label stage-label">DRIVING PROFILE</div><div class="drive-modes" id="driveModes"><button class="mode-option selected" data-mode="keyboard">⌨ KEYBOARD / ARROW KEYS</button><button class="mode-option" data-mode="touch">☝ TOUCH BUTTONS</button><button class="mode-option" data-mode="wheel">◉ TOUCH STEERING</button></div><div class="section-label stage-label">DRIVE FEEL</div><div class="drive-modes" id="physicsModes"><button class="mode-option selected" data-physics="arcade">⚡ ARCADE</button><button class="mode-option" data-physics="sim">🏁 SIMULATION</button></div><div class="section-label stage-label">GRAPHICS QUALITY</div><div class="drive-modes" id="graphicsModes"><button class="mode-option" data-graphics="performance">⚡ PERFORMANCE</button><button class="mode-option" data-graphics="balanced">◈ BALANCED</button><button class="mode-option" data-graphics="ultra">✦ ULTRA</button></div><p class="garage-note" id="graphicsHint">Balanced rendering for smooth gameplay.</p><button id="fullscreenButton" class="secondary-button garage-fullscreen">⛶ FULLSCREEN</button><div class="section-label stage-label">WEATHER & LIGHT</div><div class="drive-modes" id="conditionModes"><button class="mode-option selected" data-condition="clear">☀ CLEAR</button><button class="mode-option" data-condition="rain">🌧 RAIN</button><button class="mode-option" data-condition="night">☾ NIGHT</button></div><div class="tuning-readout" id="setupReadout">GRIP: BALANCED · VISIBILITY: CLEAR · ASSIST: ON</div><button id="startButton">START ZAYRO RACE <span>↗</span></button><div class="start-foot">WASD TO DRIVE <b>•</b> SHIFT FOR NITRO <b>•</b> P PAUSE <b>•</b> F FULLSCREEN <b>•</b> M MUSIC <b>•</b> CREATED BY RIHAN</div></div><div class="start-side">01 <span>/</span> 03<br><small>READY TO RACE</small></div></div>
+  <script src="game.js?v=20261109-noghost1"></script>
+  <script src="zayro_plus.js?v=20261030-pro1"></script>
+  <script src="zayro_realism.js?v=20261031-real1"></script>
+  <script src="zayro_cars.js?v=20261102-cars2"></script>
+  <script src="zayro_extra.js?v=20261102-extra2"></script>
+  <script src="zayro_photo.js?v=20261102-photo12"></script>
+  <script src="zayro_legend.js?v=20261102-legend1"></script>
+  <script src="zayro_finish.js?v=20261103-finish1"></script>
+  <script src="zayro_graphics.js?v=20261104-gfx1"></script>
+  <script src="zayro_results.js?v=20261107-results1"></script>
+  <script src="zayro_certificate.js?v=20261107-cert3"></script>
+  <script src="zayro_cockpit.js?v=20261105-cockpit1"></script>
+  <script src="zayro_apex.js?v=20261105-apex1"></script>
+  <script src="zayro_rewards.js?v=20261107-rewards1"></script>
+  <script src="zayro_mp_config.js?v=20261107-mp1"></script>
+  <script src="zayro_mp.js?v=20261107-mp1"></script>
+  <script src="zayro_pro.js?v=20261108-pro1"></script>
+  <script src="zayro_dynamics.js?v=20261109-dyn1"></script>
+  <script src="zayro_detail.js?v=20261109-det1"></script>
+  <script src="zayro_hud.js?v=20261110-hud2"></script>
+</body>
+</html>
+
+
+

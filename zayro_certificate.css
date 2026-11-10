@@ -1,0 +1,33 @@
+/* ZAYRO RACING — Champion Rewards v2 / Certificate UI */
+#zayroCertificatePanel{margin:12px 0 4px;padding:12px;border:1px solid #d9b45b66;background:linear-gradient(160deg,#10181a,#161a1a 60%,#2a2213);box-shadow:inset 0 1px 0 #ffe6a633,0 8px 28px #0006;text-align:center}
+.zr-cert-card{position:relative;margin:0 auto 12px;padding:10px 12px 12px;max-width:340px;aspect-ratio:1.414/1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border:2px solid transparent;background:linear-gradient(#0b1012,#0b1012) padding-box,linear-gradient(135deg,#f6dc93,#a8751f 45%,#f6dc93) border-box;box-shadow:0 10px 30px #0008,0 0 24px #d6a83f22;overflow:hidden}
+.zr-cert-card::before{content:"";position:absolute;inset:5px;border:1px solid #d9b45b55;pointer-events:none}
+.zr-cert-flag{position:absolute;left:12px;right:12px;height:7px;background:repeating-conic-gradient(#e0b860 0 25%,transparent 0 50%) 0 0/7px 7px;opacity:.85}
+.zr-cert-flag:first-child{top:9px}
+.zr-cert-flag:last-child{bottom:9px}
+.zr-cert-card-k{margin-top:10px;font:7px 'Space Mono',monospace;letter-spacing:3px;color:#f2cf72}
+.zr-cert-cup{font-size:30px;line-height:1;filter:drop-shadow(0 0 10px #f5c84a88)}
+.zr-cert-card-name{max-width:92%;font:italic 900 clamp(18px,5vw,24px)/1.1 Georgia,'Times New Roman',serif;color:#fff6dc;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.zr-cert-card-stage{font:8px 'Space Mono',monospace;letter-spacing:1.5px;color:#c9cdc6}
+.zr-cert-card-medal{font:900 14px Georgia,serif;font-style:normal;letter-spacing:3px;background:linear-gradient(180deg,#fff0b3,#c8962f 55%,#f4d57a);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:8px}
+#zayroCertificatePanel[data-medal="silver"] .zr-cert-card-medal{background:linear-gradient(180deg,#fff,#8e949c 55%,#e8ecf0);-webkit-background-clip:text;background-clip:text}
+#zayroCertificatePanel .zr-cert-copy{margin:4px 0 12px;color:#c4c8c1;font:10px 'Space Mono',monospace;line-height:1.6}
+#zayroCertificatePanel .zr-cert-download{display:block;width:100%;padding:13px 15px;border:1px solid #f5d47d;background:linear-gradient(100deg,#ffe6a2,#d6a83f);color:#17150f;font:900 12px 'Space Mono',monospace;letter-spacing:.7px;cursor:pointer;box-shadow:0 4px 18px #e5b94b33;transition:transform .2s,filter .2s}
+#zayroCertificatePanel .zr-cert-download:hover{transform:translateY(-2px);filter:brightness(1.08)}
+#zayroCertificatePanel .zr-cert-alt{display:block;width:100%;margin-top:7px;padding:9px 12px;border:1px solid #d9b45b66;background:transparent;color:#e9cf8b;font:9px 'Space Mono',monospace;letter-spacing:1px;cursor:pointer}
+#zayroCertificatePanel .zr-cert-alt:hover{background:#d9b45b18}
+#zayroCertificatePanel button:focus-visible{outline:3px solid #fff;outline-offset:3px}
+#zayroCertificatePanel .zr-cert-id{display:block;margin-top:8px;color:#aab0a7;font:8px 'Space Mono',monospace;overflow-wrap:anywhere}
+#zayroCertificatePanel .zr-cert-error{display:none;margin-top:8px;color:#ff9c8b;font:10px 'Space Mono',monospace}
+@media(prefers-reduced-motion:reduce){#zayroCertificatePanel .zr-cert-download{transition:none}}
+@media(max-width:520px){#zayroCertificatePanel{padding:10px}#zayroCertificatePanel .zr-cert-copy{font-size:9px}}
+#finish .pause-box{width:min(520px,94vw);min-width:0;max-height:92vh;overflow-y:auto;padding:clamp(14px,3vh,28px) clamp(14px,4vw,38px);overscroll-behavior:contain}
+#finish .pause-box h1{font-size:clamp(28px,6vw,48px);line-height:1.02}
+
+/* v3 — finishing-position line on the preview card */
+.zr-cert-card-place{display:block;margin-top:1px;font:900 italic 17px/1.05 'Barlow Condensed',Impact,sans-serif;letter-spacing:.12em;color:#f5d47d;text-shadow:0 0 12px #f5d47d55}
+#zayroCertificatePanel[data-medal="silver"] .zr-cert-card-place,#zayroCertificatePanel[data-medal="finisher"] .zr-cert-card-place{color:#dfe7ee;text-shadow:0 0 12px #dfe7ee44}
+#zayroCertificatePanel[data-medal="bronze"] .zr-cert-card-place{color:#e6a06a;text-shadow:0 0 12px #e6a06a44}
+#zayroCertificatePanel button:disabled{opacity:.55;cursor:not-allowed}
+#zayroCertificatePanel[data-medal="bronze"] .zr-cert-card-medal{background:linear-gradient(180deg,#ffe3c9,#a8612b 55%,#f0b98a);-webkit-background-clip:text;background-clip:text}
+#zayroCertificatePanel[data-medal="finisher"] .zr-cert-card-medal{background:linear-gradient(180deg,#fff,#8e949c 55%,#e8ecf0);-webkit-background-clip:text;background-clip:text}

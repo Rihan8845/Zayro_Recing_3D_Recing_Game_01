@@ -1,0 +1,160 @@
+/* ZAYRO RACING — PREMIUM GOLD theme for the FIRST PAGES (driver-ID screen + garage/start screen).
+   Black & champagne gold, matching the ZAYRO "Z" logo. Purely additive and scoped to #nameScreen / #startscreen,
+   so the in-race HUD, finish screens and everything else keep their original colours.
+   To go back to the old look: delete the zayro_theme.css line in index.html. */
+#nameScreen,#startscreen{--acid:#e6c36a;--gold:#e6c36a;--gold-hi:#f8e6ae;--gold-lo:#b88a2e;--white:#f6efe0;--dim:#a8a08f;--line:rgba(230,195,106,.2);--panel:rgba(12,10,8,.78)}
+
+/* backgrounds: warm near-black with a soft gold glow instead of the cold teal */
+#nameScreen{background:radial-gradient(ellipse at 50% 42%,rgba(230,195,106,.13),transparent 36%),radial-gradient(ellipse at 10% 90%,rgba(150,98,30,.14),transparent 38%),linear-gradient(125deg,#050403f7,#0e0b08f2 52%,#030303fa)!important}
+#startscreen.startscreen{background:linear-gradient(90deg,rgba(7,6,5,.95) 0%,rgba(11,9,7,.74) 46%,rgba(8,6,4,.16) 100%)}
+#nameScreen .name-box{border:1px solid rgba(230,195,106,.45);background:linear-gradient(145deg,rgba(26,21,14,.96),rgba(8,7,5,.98));box-shadow:0 30px 100px #000c,0 0 60px rgba(230,195,106,.09),inset 0 1px rgba(255,240,200,.14)}
+
+/* gold-foil headline lines */
+#nameScreen .name-box h1 span,#startscreen .start-content h1 span{background:linear-gradient(180deg,#fff1c2 0%,#e6c36a 46%,#b88a2e 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;filter:drop-shadow(0 2px 14px rgba(230,195,106,.22))}
+#startscreen .start-content h1,#nameScreen .name-box h1{color:#f6efe0}
+
+/* main call-to-action buttons: polished gold with dark lettering */
+#startscreen #startButton,#nameScreen #nameForm button[type=submit]{background:linear-gradient(135deg,#f8e6ae 0%,#e6c36a 48%,#b88a2e 100%);color:#17120a;box-shadow:0 8px 26px rgba(184,138,46,.28),inset 0 1px rgba(255,255,255,.45)}
+#startscreen #startButton:hover,#nameScreen #nameForm button[type=submit]:hover{filter:brightness(1.08)}
+
+/* small refinements */
+#startscreen .section-label,#startscreen .stage-label{color:#d9c690}
+#startscreen .car-option,#startscreen .stage-option,#startscreen .road-option{border-color:rgba(246,239,224,.16)}
+#nameScreen input{caret-color:#e6c36a}
+#startscreen{scrollbar-color:#e6c36a #1a150e}
+
+/* driver-ID emblem + profile readiness bar (hard-coded lime gradients in the base CSS) */
+#nameScreen .emblem-core{background-image:linear-gradient(145deg,#fff1c2,#e6c36a 55%,#b88a2e)!important;box-shadow:0 0 22px rgba(230,195,106,.35)}
+#nameScreen #profileReadinessBar{background-image:linear-gradient(90deg,#b88a2e,#e6c36a,#fff1c2)!important}
+/* multiplayer UI (all of it) from zayro_mp.css */
+.zmp-chip{border:1px solid #e6c36a80;color:#e6c36a;box-shadow:0 0 22px #e6c36a22}
+.zmp-chip:hover{background:#e6c36a}
+.zmp-card{border:1px solid #e6c36a55;box-shadow:0 20px 70px #000c,0 0 40px #e6c36a14}
+.zmp-card::before{background:repeating-conic-gradient(#e6c36a 0 25%,transparent 0 50%) 0 0/5px 5px}
+.zmp-x:hover{border-color:#e6c36a;color:#e6c36a}
+.zmp-eyebrow{color:#e6c36a}
+.zmp-card input:focus,.zmp-card select:focus{border-color:#e6c36a}
+.zmp-btn.gold{background:#e6c36a;border-color:#e6c36a}
+.zmp-code{color:#e6c36a;border:1px dashed #e6c36a66;background:#e6c36a10;text-shadow:0 0 22px #e6c36a66}
+.zmp-players li.me{border-color:#e6c36a77;background:#e6c36a10}
+.zmp-host{background:#e6c36a}
+.zmp-ping b{color:#e6c36a}
+.zmp-res li.me{background:#e6c36a14}
+.zmp-res li b{color:#e6c36a}
+.zmp-hud li.me{background:#e6c36a18;outline:1px solid #e6c36a77}
+.zmp-hud li b{color:#e6c36a}
+.zmp-count{color:#e6c36a;text-shadow:0 0 50px #e6c36aaa,0 6px 30px #000}
+/* from style.css */
+#nameScreen .stage-option.selected,#startscreen .stage-option.selected{background:#e6c36a18}
+#nameScreen .car-option.selected,#startscreen .car-option.selected{background:#e6c36a17}
+#nameScreen .start-content button.car-option.selected,#startscreen .start-content button.car-option.selected,#nameScreen .start-content button.stage-option.selected,#startscreen .start-content button.stage-option.selected{background:#e6c36a18}
+#nameScreen .mode-option.selected,#startscreen .mode-option.selected{background:#e6c36a16!important}
+#nameScreen .steering-wheel,#startscreen .steering-wheel{color:#e6c36a}
+#nameScreen .start-content .section-label,#startscreen .start-content .section-label{color:#e6c36a}
+#nameScreen .start-content .section-label:after,#startscreen .start-content .section-label:after{background:linear-gradient(90deg,#e6c36a5c,transparent)}
+#nameScreen #startButton,#startscreen #startButton{box-shadow:0 7px 28px #e6c36a24}
+#nameScreen #startButton:hover,#startscreen #startButton:hover{box-shadow:0 10px 34px #e6c36a40}
+#nameScreen{background:radial-gradient(ellipse at 50% 38%,rgba(230,195,106,.13),transparent 34%),linear-gradient(125deg,rgba(4,9,11,.96),rgba(9,21,24,.91) 55%,rgba(3,8,10,.97))}
+#nameScreen::before{background:conic-gradient(from 0deg at 50% 50%,transparent 0 27%,rgba(230,195,106,.045) 31%,transparent 36% 60%,rgba(87,215,255,.045) 64%,transparent 69%)}
+#nameScreen .name-box{border:1px solid rgba(230,195,106,.42);box-shadow:0 30px 100px #000a,0 0 55px rgba(230,195,106,.08),inset 0 1px rgba(255,255,255,.12)}
+#nameScreen .name-box h1 span{text-shadow:0 0 25px rgba(230,195,106,.22)}
+#nameScreen .name-box input:focus{box-shadow:0 0 0 3px #e6c36a15,0 0 28px #e6c36a10}
+#nameScreen .name-box button{box-shadow:0 8px 28px #e6c36a22}
+#nameScreen .name-box button:hover{box-shadow:0 12px 34px #e6c36a45}
+#nameScreen{background:radial-gradient(ellipse at 50% 48%,rgba(230,195,106,.12),transparent 28%),radial-gradient(ellipse at 12% 85%,rgba(47,154,180,.12),transparent 34%),linear-gradient(125deg,#030708f7,#0a1719f2 52%,#020607fa)!important}
+#nameScreen .name-box{border-color:#e6c36a66;box-shadow:0 35px 110px #000c,0 0 0 1px #ffffff08,0 0 65px #e6c36a10,inset 0 1px #ffffff1c!important}
+#nameScreen .name-box input:focus{box-shadow:0 0 0 3px #e6c36a18,0 0 32px #e6c36a14,inset 0 1px 8px #0008}
+#nameScreen .name-box::after{box-shadow:0 0 22px 2px #e6c36a66}
+#nameScreen:after{background:repeating-linear-gradient(115deg,transparent 0 72px,#ffffff0b 73px,transparent 74px 144px),linear-gradient(90deg,transparent 49.9%,#e6c36a08 50%,transparent 50.1%)}
+#nameScreen .brand-mark,#startscreen .brand-mark{box-shadow:0 0 22px #e6c36a25}
+#nameScreen .start-side,#startscreen .start-side{text-shadow:0 0 24px #e6c36a24}
+#nameScreen .tuning-readout,#startscreen .tuning-readout{border:1px solid #e6c36a33;background:#e6c36a0b}
+#nameScreen .name-box{border:1px solid rgba(230,195,106,.42)!important}
+#nameScreen .register-status,#startscreen .register-status{color:#e6c36a}
+#nameScreen .emblem-ring,#startscreen .emblem-ring{border:1px solid #e6c36a70;box-shadow:0 0 26px #e6c36a18,inset 0 0 18px #e6c36a0c}
+#nameScreen .emblem-ring:before,#startscreen .emblem-ring:before,#nameScreen .emblem-ring:after,#startscreen .emblem-ring:after{background:#e6c36a;box-shadow:0 0 12px #e6c36a}
+#nameScreen .emblem-core,#startscreen .emblem-core{background:linear-gradient(145deg,#e6c36a,#a2ca1b)}
+#nameScreen .name-box h1 span{text-shadow:0 0 24px #e6c36a1c}
+#nameScreen .name-input-wrap:focus-within,#startscreen .name-input-wrap:focus-within{box-shadow:0 0 0 3px #e6c36a15,0 0 28px #e6c36a10}
+#nameScreen .preview-dot,#startscreen .preview-dot{box-shadow:0 0 12px #e6c36a}
+#nameScreen .preview-class,#startscreen .preview-class{border:1px solid #e6c36a33}
+#nameScreen .rank-card.rank-up,#startscreen .rank-card.rank-up{box-shadow:0 0 22px #e6c36a30}
+#nameScreen .tuning-wallet,#startscreen .tuning-wallet{border:1px solid #e6c36a40;background:linear-gradient(90deg,#e6c36a12,#071012a8)}
+#nameScreen .tuning-wallet strong,#startscreen .tuning-wallet strong{text-shadow:0 0 18px #e6c36a38}
+#nameScreen .upgrade-option:hover:not(:disabled),#startscreen .upgrade-option:hover:not(:disabled){border-color:#e6c36a80}
+#nameScreen{background:radial-gradient(ellipse at 50% 42%,rgba(230,195,106,.11),transparent 32%),linear-gradient(135deg,#020607f7,#091518f2 48%,#020607fa)!important}
+#nameScreen .world-grid,#startscreen .world-grid{background-image:linear-gradient(#e6c36a18 1px,transparent 1px),linear-gradient(90deg,#e6c36a14 1px,transparent 1px)}
+#nameScreen .world-scan,#startscreen .world-scan{background:linear-gradient(180deg,transparent 0%,#e6c36a06 48%,#e6c36a18 50%,transparent 52%)}
+#nameScreen .world-data span,#startscreen .world-data span{color:#e6c36a}
+#nameScreen .world-car,#startscreen .world-car{filter:drop-shadow(0 0 26px #e6c36a20)}
+#nameScreen .world-car:before,#startscreen .world-car:before{border-top:1px solid #e6c36a66}
+#nameScreen .world-car-light,#startscreen .world-car-light{background:#e6c36a;box-shadow:0 0 20px 4px #e6c36a66}
+#nameScreen .world-light-trail,#startscreen .world-light-trail{background:linear-gradient(90deg,transparent,#e6c36a,transparent);filter:drop-shadow(0 0 6px #e6c36a)}
+#nameScreen .name-box{box-shadow:0 35px 120px #000d,0 0 0 1px #ffffff0a,0 0 65px #e6c36a17,inset 0 1px #ffffff20!important}
+#nameScreen .profile-security,#startscreen .profile-security{background:linear-gradient(100deg,#e6c36a09,#ffffff03)}
+#nameScreen .profile-meter i,#startscreen .profile-meter i{box-shadow:0 0 12px #e6c36a70}
+#nameScreen .name-box.name-valid .profile-security{border-color:#e6c36a35;background:linear-gradient(100deg,#e6c36a10,#ffffff03)}
+#nameScreen .name-box.name-valid #profileStatus{color:#e6c36a}
+#nameScreen .name-box.name-valid .preview-class{background:#e6c36a10;box-shadow:0 0 16px #e6c36a10}
+#nameScreen .name-box button{box-shadow:0 8px 30px #e6c36a26,0 0 0 1px #ffffff12 inset}
+#nameScreen .name-box button:focus-visible{outline:2px solid #fff4d6}
+#nameScreen .fps-readout,#startscreen .fps-readout{color:#e6c36a}
+#nameScreen .service-panel button,#startscreen .service-panel button{border:1px solid #e6c36a55;background:#e6c36a10}
+#nameScreen .service-panel button:hover:not(:disabled),#startscreen .service-panel button:hover:not(:disabled){background:#e6c36a20}
+#nameScreen .service-panel button.service-needed:not(:disabled),#startscreen .service-panel button.service-needed:not(:disabled){box-shadow:0 0 18px #e6c36a10}
+#nameScreen .skill-status.active,#startscreen .skill-status.active{text-shadow:0 0 12px #e6c36a55}
+#nameScreen .profile-transfer button,#startscreen .profile-transfer button{border:1px solid #e6c36a55}
+#nameScreen .profile-transfer button:hover,#startscreen .profile-transfer button:hover{background:#e6c36a12}
+#nameScreen .profile-transfer button:focus-visible,#startscreen .profile-transfer button:focus-visible{outline:2px solid #fff4d6}
+#nameScreen .registration-world::before{background:
+    linear-gradient(90deg,transparent 0 23%,#e6c36a55 23.2% 23.45%,transparent 23.7% 49.7%,#efffe75c 49.85% 50.15%,transparent 50.3% 76.3%,#e6c36a55 76.55% 76.8%,transparent 77%),
+    repeating-linear-gradient(180deg,transparent 0 48px,#e6c36a48 49px 53px,transparent 54px 92px),
+    linear-gradient(180deg,#182426 0%,#11191b 55%,#202a2c 100%);border-left:2px solid #e6c36a50;border-right:2px solid #e6c36a50;box-shadow:0 0 60px #e6c36a19}
+#nameScreen .registration-world::after{background:radial-gradient(ellipse at 13% 72%,#e6c36a22 0,transparent 22%),radial-gradient(ellipse at 87% 72%,#76eaff20 0,transparent 24%),linear-gradient(90deg,transparent 0 8%,#e6c36a12 8.1%,transparent 8.4% 91.6%,#8deaff12 91.9%,transparent 92%)}
+#nameScreen .world-data{border-left:1px solid #e6c36a60}
+#nameScreen .world-car{filter:drop-shadow(0 0 32px #e6c36a3b)}
+#nameScreen .world-car:before{box-shadow:0 -2px 0 #e6c36a80,inset 0 3px 0 #ffffff55}
+#nameScreen .world-car-wheel{background:radial-gradient(ellipse,#e6c36a 0 5%,#7f8c86 7% 11%,#171f20 13% 22%,#030506 25% 70%,#52605b 73%)}
+#nameScreen .world-car-light{box-shadow:0 0 24px 8px #e6c36a7a,0 0 80px 20px #e6c36a29}
+#nameScreen .name-box{border-color:#e6c36a44!important}
+#nameScreen .registration-world::before{background:
+    linear-gradient(90deg,transparent 0 7%,#e6c36a 7.2% 7.5%,transparent 7.8% 49.65%,#f4f6db 49.85% 50.15%,transparent 50.35% 92.2%,#e6c36a 92.5% 92.8%,transparent 93%),
+    repeating-linear-gradient(180deg,transparent 0 40px,#eaff9a9c 41px 46px,transparent 47px 82px),
+    linear-gradient(90deg,#24302f 0%,#131c1e 35%,#101719 50%,#131c1e 65%,#24302f 100%)}
+#nameScreen .finish-speed-panel,#startscreen .finish-speed-panel{border:1px solid #e6c36a5e;background:linear-gradient(110deg,#e6c36a12,#e6c36a05)}
+#nameScreen .finish-speed-panel strong,#startscreen .finish-speed-panel strong{text-shadow:0 0 14px #e6c36a35}
+/* from zayro_apex.css */
+#nameScreen #zaTele b i,#startscreen #zaTele b i{color:var(--acid,#e6c36a)}
+/* from zayro_cockpit.css */
+#nameScreen .touch-controls .steer-pad>button.pressed,#startscreen .touch-controls .steer-pad>button.pressed{box-shadow:0 0 0 3px #d8dde1,0 0 0 4px #20262b,0 2px 0 4px #0b0d0f,0 4px 8px #000b,inset 0 3px 8px #000,0 0 14px #e6c36a99!important}
+/* from zayro_extra.css */
+
+/* from zayro_finish.css */
+
+/* from zayro_graphics.css */
+
+/* from zayro_legend.css */
+
+/* from zayro_mobile.css */
+#nameScreen .zm-nbar b,#startscreen .zm-nbar b{background:linear-gradient(90deg,#5de4ff,#e6c36a)}
+#nameScreen #zmSpeed small,#startscreen #zmSpeed small{color:#e6c36a}
+/* from zayro_plus.css */
+
+/* from zayro_realism.css */
+
+/* from zayro_pro.css */
+#nameScreen .zd-c.done,#startscreen .zd-c.done{border-color:#e6c36a80;background:linear-gradient(150deg,#e6c36a22,#00000030)}
+#nameScreen .zd-c.done b,#startscreen .zd-c.done b{color:var(--acid,#e6c36a)}
+#nameScreen .zt-h em,#startscreen .zt-h em{color:var(--acid,#e6c36a)}
+#nameScreen .zt-bar u,#startscreen .zt-bar u{background:var(--acid,#e6c36a);box-shadow:0 0 8px #e6c36a99}
+#nameScreen .zt-buy:hover:not(:disabled),#startscreen .zt-buy:hover:not(:disabled),#nameScreen .zt-t:hover,#startscreen .zt-t:hover,#nameScreen .zt-switch:hover,#startscreen .zt-switch:hover{border-color:var(--acid,#e6c36a);color:var(--acid,#e6c36a)}
+#nameScreen .zt-t em,#startscreen .zt-t em{color:var(--acid,#e6c36a)}
+#nameScreen .zt-t.sel,#startscreen .zt-t.sel{border-color:var(--acid,#e6c36a);background:linear-gradient(150deg,#e6c36a22,#0a1114)}
+#nameScreen .zt-switch.on,#startscreen .zt-switch.on{border-color:#e6c36a99;color:var(--acid,#e6c36a)}
+#nameScreen .zh-i u,#startscreen .zh-i u{background:var(--acid,#e6c36a)}
+#nameScreen .zpro-tune .zt-t em,#startscreen .zpro-tune .zt-t em{color:var(--acid,#e6c36a)!important}
+#nameScreen .zpro-tune .zt-t.sel,#startscreen .zpro-tune .zt-t.sel{background:linear-gradient(150deg,#e6c36a26,#0a1114)!important;border-color:var(--acid,#e6c36a)!important}
+#nameScreen .zpro-tune .zt-switch.on,#startscreen .zpro-tune .zt-switch.on{color:var(--acid,#e6c36a)!important;border-color:#e6c36a99!important}
+#nameScreen .zpro-tune .zt-t:hover,#startscreen .zpro-tune .zt-t:hover,#nameScreen .zpro-tune .zt-switch:hover,#startscreen .zpro-tune .zt-switch:hover{border-color:var(--acid,#e6c36a)!important}
+/* from zayro_rewards.css */
+
